@@ -24,6 +24,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UINavigationContro
         imagePicker.allowsEditing = false
         
         
+        
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
