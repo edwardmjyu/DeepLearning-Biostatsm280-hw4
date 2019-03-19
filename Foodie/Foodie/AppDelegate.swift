@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  SeaFood
+//  Foodie
 //
-//  Created by 张唯维 on 3/17/19.
+//  Created by 张唯维 on 3/18/19.
 //  Copyright © 2019 张唯维. All rights reserved.
 //
 

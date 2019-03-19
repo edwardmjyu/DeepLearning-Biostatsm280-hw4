@@ -1,8 +1,8 @@
 //
 //  ViewController.swift
-//  SeaFood
+//  Foodie
 //
-//  Created by 张唯维 on 3/17/19.
+//  Created by 张唯维 on 3/18/19.
 //  Copyright © 2019 张唯维. All rights reserved.
 //
 
@@ -10,13 +10,10 @@ import UIKit
 import CoreML
 import Vision
 
-
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var imageView: UIImageView!
-    
     let imagePicker = UIImagePickerController()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -25,22 +22,18 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         imagePicker.sourceType = .photoLibrary
         imagePicker.allowsEditing = false
     }
-    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         if let userPickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             imageView.image = userPickedImage
             guard let ciimage = CIImage(image: userPickedImage) else {
                 fatalError("Could not cobvert to CIImage")
-                }//an image type suitable for core M-L frame work, guard...is for safety
+            }//an image type suitable for core M-L frame work, guard...is for safety
             detect(image: ciimage)
         }
         // the data you got from the dictionary should be in the type of UIImage
         imagePicker.dismiss(animated: true, completion: nil)
     }
-    
-
-    
     
     func detect(image: CIImage){
         guard let model = try? VNCoreMLModel(for: Inceptionv3().model) else {
@@ -57,7 +50,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                     self.navigationItem.title = "Hotdog"
                 } else if firstResult.identifier.contains("burger") {
                     self.navigationItem.title = "Burger"
-                } else if firstResult.identifier.contains("icecream") {
+                } else if firstResult.identifier.contains("ice cream") {
                     self.navigationItem.title = "Ice cream"
                 } else if firstResult.identifier.contains("hotpot") {
                     self.navigationItem.title = "Hot pot"
@@ -70,7 +63,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                     guard let Observation = results.first else {
                         fatalError("try more you cam nail it!")
                     }
-                    self.navigationItem.title = "I'm not sure, but it may be \(Observation.identifier)"
+                    self.navigationItem.title = "I'm not sure but it maybe \(Observation.identifier)"
                 }
             }
             
@@ -84,16 +77,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         catch { //try to do it and catch error occured
             print(error)
         }
-        
     }
-    
-    
-    
+
     @IBAction func cameraTapped(_ sender: UIBarButtonItem) {
-        
         present(imagePicker, animated: true, completion: nil)
     }
-}
     
-
+}
 

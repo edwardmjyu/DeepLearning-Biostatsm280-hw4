@@ -7,27 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C43E849B223EBE0300BBB10A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43E849A223EBE0300BBB10A /* AppDelegate.swift */; };
-		C43E849D223EBE0300BBB10A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43E849C223EBE0300BBB10A /* ViewController.swift */; };
-		C43E84A0223EBE0300BBB10A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C43E849E223EBE0300BBB10A /* Main.storyboard */; };
-		C43E84A2223EBE0400BBB10A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C43E84A1223EBE0400BBB10A /* Assets.xcassets */; };
-		C43E84A5223EBE0400BBB10A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C43E84A3223EBE0400BBB10A /* LaunchScreen.storyboard */; };
-		C43E84B1223EEE5900BBB10A /* Inceptionv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = C43E84B0223EEE5800BBB10A /* Inceptionv3.mlmodel */; };
+		C4C0515322409276000EE45A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0515222409276000EE45A /* AppDelegate.swift */; };
+		C4C0515522409276000EE45A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0515422409276000EE45A /* ViewController.swift */; };
+		C4C0515822409276000EE45A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4C0515622409276000EE45A /* Main.storyboard */; };
+		C4C0515A22409277000EE45A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4C0515922409277000EE45A /* Assets.xcassets */; };
+		C4C0515D22409277000EE45A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4C0515B22409277000EE45A /* LaunchScreen.storyboard */; };
+		C4C05165224095F7000EE45A /* Inceptionv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = C4C05164224095F7000EE45A /* Inceptionv3.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C43E8497223EBE0300BBB10A /* SeaFood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeaFood.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C43E849A223EBE0300BBB10A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C43E849C223EBE0300BBB10A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		C43E849F223EBE0300BBB10A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		C43E84A1223EBE0400BBB10A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		C43E84A4223EBE0400BBB10A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		C43E84A6223EBE0400BBB10A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C43E84B0223EEE5800BBB10A /* Inceptionv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Inceptionv3.mlmodel; sourceTree = "<group>"; };
+		C4C0514F22409276000EE45A /* Foodie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Foodie.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4C0515222409276000EE45A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C4C0515422409276000EE45A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C4C0515722409276000EE45A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C4C0515922409277000EE45A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C4C0515C22409277000EE45A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C4C0515E22409277000EE45A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C4C05164224095F7000EE45A /* Inceptionv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Inceptionv3.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		C43E8494223EBE0300BBB10A /* Frameworks */ = {
+		C4C0514C22409276000EE45A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -37,72 +37,72 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C43E848E223EBE0300BBB10A = {
+		C4C0514622409276000EE45A = {
 			isa = PBXGroup;
 			children = (
-				C43E8499223EBE0300BBB10A /* SeaFood */,
-				C43E8498223EBE0300BBB10A /* Products */,
+				C4C0515122409276000EE45A /* Foodie */,
+				C4C0515022409276000EE45A /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		C43E8498223EBE0300BBB10A /* Products */ = {
+		C4C0515022409276000EE45A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C43E8497223EBE0300BBB10A /* SeaFood.app */,
+				C4C0514F22409276000EE45A /* Foodie.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C43E8499223EBE0300BBB10A /* SeaFood */ = {
+		C4C0515122409276000EE45A /* Foodie */ = {
 			isa = PBXGroup;
 			children = (
-				C43E849A223EBE0300BBB10A /* AppDelegate.swift */,
-				C43E849C223EBE0300BBB10A /* ViewController.swift */,
-				C43E849E223EBE0300BBB10A /* Main.storyboard */,
-				C43E84A1223EBE0400BBB10A /* Assets.xcassets */,
-				C43E84A3223EBE0400BBB10A /* LaunchScreen.storyboard */,
-				C43E84A6223EBE0400BBB10A /* Info.plist */,
-				C43E84B0223EEE5800BBB10A /* Inceptionv3.mlmodel */,
+				C4C0515222409276000EE45A /* AppDelegate.swift */,
+				C4C0515422409276000EE45A /* ViewController.swift */,
+				C4C0515622409276000EE45A /* Main.storyboard */,
+				C4C0515922409277000EE45A /* Assets.xcassets */,
+				C4C0515B22409277000EE45A /* LaunchScreen.storyboard */,
+				C4C05164224095F7000EE45A /* Inceptionv3.mlmodel */,
+				C4C0515E22409277000EE45A /* Info.plist */,
 			);
-			path = SeaFood;
+			path = Foodie;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C43E8496223EBE0300BBB10A /* SeaFood */ = {
+		C4C0514E22409276000EE45A /* Foodie */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C43E84A9223EBE0400BBB10A /* Build configuration list for PBXNativeTarget "SeaFood" */;
+			buildConfigurationList = C4C0516122409277000EE45A /* Build configuration list for PBXNativeTarget "Foodie" */;
 			buildPhases = (
-				C43E8493223EBE0300BBB10A /* Sources */,
-				C43E8494223EBE0300BBB10A /* Frameworks */,
-				C43E8495223EBE0300BBB10A /* Resources */,
+				C4C0514B22409276000EE45A /* Sources */,
+				C4C0514C22409276000EE45A /* Frameworks */,
+				C4C0514D22409276000EE45A /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = SeaFood;
-			productName = SeaFood;
-			productReference = C43E8497223EBE0300BBB10A /* SeaFood.app */;
+			name = Foodie;
+			productName = Foodie;
+			productReference = C4C0514F22409276000EE45A /* Foodie.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		C43E848F223EBE0300BBB10A /* Project object */ = {
+		C4C0514722409276000EE45A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "张唯维";
 				TargetAttributes = {
-					C43E8496223EBE0300BBB10A = {
+					C4C0514E22409276000EE45A = {
 						CreatedOnToolsVersion = 10.1;
 					};
 				};
 			};
-			buildConfigurationList = C43E8492223EBE0300BBB10A /* Build configuration list for PBXProject "SeaFood" */;
+			buildConfigurationList = C4C0514A22409276000EE45A /* Build configuration list for PBXProject "Foodie" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -110,55 +110,55 @@
 				en,
 				Base,
 			);
-			mainGroup = C43E848E223EBE0300BBB10A;
-			productRefGroup = C43E8498223EBE0300BBB10A /* Products */;
+			mainGroup = C4C0514622409276000EE45A;
+			productRefGroup = C4C0515022409276000EE45A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C43E8496223EBE0300BBB10A /* SeaFood */,
+				C4C0514E22409276000EE45A /* Foodie */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		C43E8495223EBE0300BBB10A /* Resources */ = {
+		C4C0514D22409276000EE45A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C43E84A5223EBE0400BBB10A /* LaunchScreen.storyboard in Resources */,
-				C43E84A2223EBE0400BBB10A /* Assets.xcassets in Resources */,
-				C43E84A0223EBE0300BBB10A /* Main.storyboard in Resources */,
+				C4C0515D22409277000EE45A /* LaunchScreen.storyboard in Resources */,
+				C4C0515A22409277000EE45A /* Assets.xcassets in Resources */,
+				C4C0515822409276000EE45A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		C43E8493223EBE0300BBB10A /* Sources */ = {
+		C4C0514B22409276000EE45A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C43E849D223EBE0300BBB10A /* ViewController.swift in Sources */,
-				C43E84B1223EEE5900BBB10A /* Inceptionv3.mlmodel in Sources */,
-				C43E849B223EBE0300BBB10A /* AppDelegate.swift in Sources */,
+				C4C0515522409276000EE45A /* ViewController.swift in Sources */,
+				C4C05165224095F7000EE45A /* Inceptionv3.mlmodel in Sources */,
+				C4C0515322409276000EE45A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		C43E849E223EBE0300BBB10A /* Main.storyboard */ = {
+		C4C0515622409276000EE45A /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C43E849F223EBE0300BBB10A /* Base */,
+				C4C0515722409276000EE45A /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		C43E84A3223EBE0400BBB10A /* LaunchScreen.storyboard */ = {
+		C4C0515B22409277000EE45A /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C43E84A4223EBE0400BBB10A /* Base */,
+				C4C0515C22409277000EE45A /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -166,7 +166,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		C43E84A7223EBE0400BBB10A /* Debug */ = {
+		C4C0515F22409277000EE45A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -227,7 +227,7 @@
 			};
 			name = Debug;
 		};
-		C43E84A8223EBE0400BBB10A /* Release */ = {
+		C4C0516022409277000EE45A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -282,34 +282,34 @@
 			};
 			name = Release;
 		};
-		C43E84AA223EBE0400BBB10A /* Debug */ = {
+		C4C0516222409277000EE45A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = SeaFood/Info.plist;
+				INFOPLIST_FILE = Foodie/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.uclasuedez.Food;
+				PRODUCT_BUNDLE_IDENTIFIER = com.uclaPiedPiper.Foodie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		C43E84AB223EBE0400BBB10A /* Release */ = {
+		C4C0516322409277000EE45A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = SeaFood/Info.plist;
+				INFOPLIST_FILE = Foodie/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.uclasuedez.Food;
+				PRODUCT_BUNDLE_IDENTIFIER = com.uclaPiedPiper.Foodie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -319,25 +319,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C43E8492223EBE0300BBB10A /* Build configuration list for PBXProject "SeaFood" */ = {
+		C4C0514A22409276000EE45A /* Build configuration list for PBXProject "Foodie" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C43E84A7223EBE0400BBB10A /* Debug */,
-				C43E84A8223EBE0400BBB10A /* Release */,
+				C4C0515F22409277000EE45A /* Debug */,
+				C4C0516022409277000EE45A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C43E84A9223EBE0400BBB10A /* Build configuration list for PBXNativeTarget "SeaFood" */ = {
+		C4C0516122409277000EE45A /* Build configuration list for PBXNativeTarget "Foodie" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C43E84AA223EBE0400BBB10A /* Debug */,
-				C43E84AB223EBE0400BBB10A /* Release */,
+				C4C0516222409277000EE45A /* Debug */,
+				C4C0516322409277000EE45A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = C43E848F223EBE0300BBB10A /* Project object */;
+	rootObject = C4C0514722409276000EE45A /* Project object */;
 }
