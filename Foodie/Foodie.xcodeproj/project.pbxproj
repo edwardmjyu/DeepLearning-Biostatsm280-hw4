@@ -7,27 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		185F4CBA223B68E100C5ADAD /* Inceptionv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 185F4CB9223B68E100C5ADAD /* Inceptionv3.mlmodel */; };
-		18B27DBB223B5DD100801B08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B27DBA223B5DD100801B08 /* AppDelegate.swift */; };
-		18B27DBD223B5DD100801B08 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B27DBC223B5DD100801B08 /* ViewController.swift */; };
-		18B27DC0223B5DD100801B08 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18B27DBE223B5DD100801B08 /* Main.storyboard */; };
-		18B27DC2223B5DD300801B08 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18B27DC1223B5DD300801B08 /* Assets.xcassets */; };
-		18B27DC5223B5DD300801B08 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18B27DC3223B5DD300801B08 /* LaunchScreen.storyboard */; };
+		C43E849B223EBE0300BBB10A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43E849A223EBE0300BBB10A /* AppDelegate.swift */; };
+		C43E849D223EBE0300BBB10A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43E849C223EBE0300BBB10A /* ViewController.swift */; };
+		C43E84A0223EBE0300BBB10A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C43E849E223EBE0300BBB10A /* Main.storyboard */; };
+		C43E84A2223EBE0400BBB10A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C43E84A1223EBE0400BBB10A /* Assets.xcassets */; };
+		C43E84A5223EBE0400BBB10A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C43E84A3223EBE0400BBB10A /* LaunchScreen.storyboard */; };
+		C43E84B1223EEE5900BBB10A /* Inceptionv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = C43E84B0223EEE5800BBB10A /* Inceptionv3.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		185F4CB9223B68E100C5ADAD /* Inceptionv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Inceptionv3.mlmodel; sourceTree = "<group>"; };
-		18B27DB7223B5DD100801B08 /* Foodie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Foodie.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		18B27DBA223B5DD100801B08 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		18B27DBC223B5DD100801B08 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		18B27DBF223B5DD100801B08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		18B27DC1223B5DD300801B08 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		18B27DC4223B5DD300801B08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		18B27DC6223B5DD300801B08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C43E8497223EBE0300BBB10A /* SeaFood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeaFood.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C43E849A223EBE0300BBB10A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C43E849C223EBE0300BBB10A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C43E849F223EBE0300BBB10A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C43E84A1223EBE0400BBB10A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C43E84A4223EBE0400BBB10A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C43E84A6223EBE0400BBB10A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C43E84B0223EEE5800BBB10A /* Inceptionv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Inceptionv3.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		18B27DB4223B5DD100801B08 /* Frameworks */ = {
+		C43E8494223EBE0300BBB10A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -37,72 +37,72 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		18B27DAE223B5DD100801B08 = {
+		C43E848E223EBE0300BBB10A = {
 			isa = PBXGroup;
 			children = (
-				18B27DB9223B5DD100801B08 /* Foodie */,
-				18B27DB8223B5DD100801B08 /* Products */,
+				C43E8499223EBE0300BBB10A /* SeaFood */,
+				C43E8498223EBE0300BBB10A /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		18B27DB8223B5DD100801B08 /* Products */ = {
+		C43E8498223EBE0300BBB10A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				18B27DB7223B5DD100801B08 /* Foodie.app */,
+				C43E8497223EBE0300BBB10A /* SeaFood.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		18B27DB9223B5DD100801B08 /* Foodie */ = {
+		C43E8499223EBE0300BBB10A /* SeaFood */ = {
 			isa = PBXGroup;
 			children = (
-				18B27DBA223B5DD100801B08 /* AppDelegate.swift */,
-				18B27DBC223B5DD100801B08 /* ViewController.swift */,
-				18B27DBE223B5DD100801B08 /* Main.storyboard */,
-				18B27DC1223B5DD300801B08 /* Assets.xcassets */,
-				18B27DC3223B5DD300801B08 /* LaunchScreen.storyboard */,
-				18B27DC6223B5DD300801B08 /* Info.plist */,
-				185F4CB9223B68E100C5ADAD /* Inceptionv3.mlmodel */,
+				C43E849A223EBE0300BBB10A /* AppDelegate.swift */,
+				C43E849C223EBE0300BBB10A /* ViewController.swift */,
+				C43E849E223EBE0300BBB10A /* Main.storyboard */,
+				C43E84A1223EBE0400BBB10A /* Assets.xcassets */,
+				C43E84A3223EBE0400BBB10A /* LaunchScreen.storyboard */,
+				C43E84A6223EBE0400BBB10A /* Info.plist */,
+				C43E84B0223EEE5800BBB10A /* Inceptionv3.mlmodel */,
 			);
-			path = Foodie;
+			path = SeaFood;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		18B27DB6223B5DD100801B08 /* Foodie */ = {
+		C43E8496223EBE0300BBB10A /* SeaFood */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 18B27DC9223B5DD300801B08 /* Build configuration list for PBXNativeTarget "Foodie" */;
+			buildConfigurationList = C43E84A9223EBE0400BBB10A /* Build configuration list for PBXNativeTarget "SeaFood" */;
 			buildPhases = (
-				18B27DB3223B5DD100801B08 /* Sources */,
-				18B27DB4223B5DD100801B08 /* Frameworks */,
-				18B27DB5223B5DD100801B08 /* Resources */,
+				C43E8493223EBE0300BBB10A /* Sources */,
+				C43E8494223EBE0300BBB10A /* Frameworks */,
+				C43E8495223EBE0300BBB10A /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = Foodie;
-			productName = Foodie;
-			productReference = 18B27DB7223B5DD100801B08 /* Foodie.app */;
+			name = SeaFood;
+			productName = SeaFood;
+			productReference = C43E8497223EBE0300BBB10A /* SeaFood.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		18B27DAF223B5DD100801B08 /* Project object */ = {
+		C43E848F223EBE0300BBB10A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 1010;
-				ORGANIZATIONNAME = apple;
+				ORGANIZATIONNAME = "张唯维";
 				TargetAttributes = {
-					18B27DB6223B5DD100801B08 = {
+					C43E8496223EBE0300BBB10A = {
 						CreatedOnToolsVersion = 10.1;
 					};
 				};
 			};
-			buildConfigurationList = 18B27DB2223B5DD100801B08 /* Build configuration list for PBXProject "Foodie" */;
+			buildConfigurationList = C43E8492223EBE0300BBB10A /* Build configuration list for PBXProject "SeaFood" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -110,55 +110,55 @@
 				en,
 				Base,
 			);
-			mainGroup = 18B27DAE223B5DD100801B08;
-			productRefGroup = 18B27DB8223B5DD100801B08 /* Products */;
+			mainGroup = C43E848E223EBE0300BBB10A;
+			productRefGroup = C43E8498223EBE0300BBB10A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				18B27DB6223B5DD100801B08 /* Foodie */,
+				C43E8496223EBE0300BBB10A /* SeaFood */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		18B27DB5223B5DD100801B08 /* Resources */ = {
+		C43E8495223EBE0300BBB10A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18B27DC5223B5DD300801B08 /* LaunchScreen.storyboard in Resources */,
-				18B27DC2223B5DD300801B08 /* Assets.xcassets in Resources */,
-				18B27DC0223B5DD100801B08 /* Main.storyboard in Resources */,
+				C43E84A5223EBE0400BBB10A /* LaunchScreen.storyboard in Resources */,
+				C43E84A2223EBE0400BBB10A /* Assets.xcassets in Resources */,
+				C43E84A0223EBE0300BBB10A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		18B27DB3223B5DD100801B08 /* Sources */ = {
+		C43E8493223EBE0300BBB10A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18B27DBD223B5DD100801B08 /* ViewController.swift in Sources */,
-				185F4CBA223B68E100C5ADAD /* Inceptionv3.mlmodel in Sources */,
-				18B27DBB223B5DD100801B08 /* AppDelegate.swift in Sources */,
+				C43E849D223EBE0300BBB10A /* ViewController.swift in Sources */,
+				C43E84B1223EEE5900BBB10A /* Inceptionv3.mlmodel in Sources */,
+				C43E849B223EBE0300BBB10A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		18B27DBE223B5DD100801B08 /* Main.storyboard */ = {
+		C43E849E223EBE0300BBB10A /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				18B27DBF223B5DD100801B08 /* Base */,
+				C43E849F223EBE0300BBB10A /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		18B27DC3223B5DD300801B08 /* LaunchScreen.storyboard */ = {
+		C43E84A3223EBE0400BBB10A /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				18B27DC4223B5DD300801B08 /* Base */,
+				C43E84A4223EBE0400BBB10A /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -166,7 +166,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		18B27DC7223B5DD300801B08 /* Debug */ = {
+		C43E84A7223EBE0400BBB10A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -227,7 +227,7 @@
 			};
 			name = Debug;
 		};
-		18B27DC8223B5DD300801B08 /* Release */ = {
+		C43E84A8223EBE0400BBB10A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -282,36 +282,34 @@
 			};
 			name = Release;
 		};
-		18B27DCA223B5DD300801B08 /* Debug */ = {
+		C43E84AA223EBE0400BBB10A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = Foodie/Info.plist;
+				INFOPLIST_FILE = SeaFood/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "https---github.com-EudoraHan.Foodie";
+				PRODUCT_BUNDLE_IDENTIFIER = com.uclasuedez.Food;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		18B27DCB223B5DD300801B08 /* Release */ = {
+		C43E84AB223EBE0400BBB10A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = Foodie/Info.plist;
+				INFOPLIST_FILE = SeaFood/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "https---github.com-EudoraHan.Foodie";
+				PRODUCT_BUNDLE_IDENTIFIER = com.uclasuedez.Food;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -321,25 +319,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		18B27DB2223B5DD100801B08 /* Build configuration list for PBXProject "Foodie" */ = {
+		C43E8492223EBE0300BBB10A /* Build configuration list for PBXProject "SeaFood" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				18B27DC7223B5DD300801B08 /* Debug */,
-				18B27DC8223B5DD300801B08 /* Release */,
+				C43E84A7223EBE0400BBB10A /* Debug */,
+				C43E84A8223EBE0400BBB10A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		18B27DC9223B5DD300801B08 /* Build configuration list for PBXNativeTarget "Foodie" */ = {
+		C43E84A9223EBE0400BBB10A /* Build configuration list for PBXNativeTarget "SeaFood" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				18B27DCA223B5DD300801B08 /* Debug */,
-				18B27DCB223B5DD300801B08 /* Release */,
+				C43E84AA223EBE0400BBB10A /* Debug */,
+				C43E84AB223EBE0400BBB10A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 18B27DAF223B5DD100801B08 /* Project object */;
+	rootObject = C43E848F223EBE0300BBB10A /* Project object */;
 }

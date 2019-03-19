@@ -1,9 +1,9 @@
 //
 //  AppDelegate.swift
-//  Foodie
+//  SeaFood
 //
-//  Created by apple on 3/14/19.
-//  Copyright © 2019 apple. All rights reserved.
+//  Created by 张唯维 on 3/17/19.
+//  Copyright © 2019 张唯维. All rights reserved.
 //
 
 import UIKit

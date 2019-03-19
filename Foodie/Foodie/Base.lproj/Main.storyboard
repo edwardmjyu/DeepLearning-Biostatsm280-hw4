@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="VWR-Bz-vcc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vs1-Rs-9bf">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -13,56 +13,60 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Foodie" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SeaFood" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qgy-ce-5yc">
-                                <rect key="frame" x="0.0" y="88" width="375" height="690"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rxr-Zx-YgC">
+                                <rect key="frame" x="0.0" y="88" width="375" height="724"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9cR-HT-swB">
+                                <rect key="frame" x="67" y="298" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Qgy-ce-5yc" firstAttribute="bottom" secondItem="eGe-Ib-pFY" secondAttribute="bottom" id="DVx-yg-kX7"/>
-                            <constraint firstItem="Qgy-ce-5yc" firstAttribute="top" secondItem="eGe-Ib-pFY" secondAttribute="top" id="LVv-tf-XDx"/>
-                            <constraint firstItem="Qgy-ce-5yc" firstAttribute="trailing" secondItem="eGe-Ib-pFY" secondAttribute="trailing" id="lbm-q0-3gZ"/>
-                            <constraint firstItem="Qgy-ce-5yc" firstAttribute="leading" secondItem="eGe-Ib-pFY" secondAttribute="leading" id="wmY-CF-reQ"/>
+                            <constraint firstItem="rxr-Zx-YgC" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="B6e-au-U68"/>
+                            <constraint firstItem="rxr-Zx-YgC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ClF-vg-MP3"/>
+                            <constraint firstItem="rxr-Zx-YgC" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="f66-o7-HNa"/>
+                            <constraint firstAttribute="bottom" secondItem="rxr-Zx-YgC" secondAttribute="bottom" id="yIb-fq-i4G"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="eGe-Ib-pFY"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="jFO-Ul-rKa">
-                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="j8S-kl-lGJ">
+                    <navigationItem key="navigationItem" id="ZIy-y0-X4e">
+                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="oga-SK-6td">
                             <connections>
-                                <action selector="cameraTapped:" destination="BYZ-38-t0r" id="pli-iX-Bsa"/>
+                                <action selector="cameraTapped:" destination="BYZ-38-t0r" id="l8l-Gh-dRL"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="imageView" destination="Qgy-ce-5yc" id="msK-I4-D6x"/>
+                        <outlet property="imageView" destination="rxr-Zx-YgC" id="5OG-OL-b4M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="948" y="-473.6131934032984"/>
+            <point key="canvasLocation" x="358" y="27"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="xP2-CT-VJJ">
+        <scene sceneID="b6P-DM-i8h">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="VWR-Bz-vcc" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vs1-Rs-9bf" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mcF-Td-FV1">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="RwN-D6-a1w">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="rim-Qq-fs9"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Dqf-F3-z3d"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NVZ-7N-sDU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fNq-8t-UIR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="34" y="-472"/>
+            <point key="canvasLocation" x="-343" y="27"/>
         </scene>
     </scenes>
 </document>
