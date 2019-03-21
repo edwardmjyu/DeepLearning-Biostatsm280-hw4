@@ -1,44 +1,7 @@
----
-title: "Biostat M280 Homework 4"
-subtitle: Due Mar 22 @ 11:59PM
-author: Yun Han, Juehao Hu, Diyang Wu, Edward Yu, Xinrui Zhang
-output: html_document
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-For this homework, you can work as a team of size $\le 5$. You can create a new private GitHub repository for collaboration (need to add @Hua-Zhou and @juhkim111 as collaborators) or re-use the current repository of a team representative. For each question, your report should have a clear description of role of each team member, and Git log should reflect individual contribution to the project.
-
-## Q1 Learn by doing
-
-I found the [TensorFlow for R Blog](https://blogs.rstudio.com/tensorflow/) series at RStudio quite illuminating. Choose one blog that interests you and do following.  
-
-1. Reproduce the results in the blog.  
-
-<<<<<<< HEAD
-```{r eval=FALSE}
-=======
-  ```Solution ```
-For this problem, we found the model that interests us the most which can be accessed here(https://blogs.rstudio.com/tensorflow/posts/2018-09-10-eager-style-transfer/). Essentially the model is consisted of takes input of two images, which are base image and style image respectively, and output one base image with style transfer associated with the style image. The model that the blog utilizes is a simplied version of model `VGG19`, which is a trained model on `ImageNet`. The blog modifies the `VGG19` model by computing `loss function` and back propagating it to get the direction of changes that we want. Specific explannations of the model functionality will be provided later in each step. 
-
-```{r}
->>>>>>> ce1c6413ea89456733d714336963491b566cb28f
-#install.packages("devtools")
-library("devtools")
-#devtools::install_github("rstudio/tensorflow")
-
-install.packages(c("tensorflow", "keras", "tfdatasets"))
-#install.packages("tfdatasets")
+devtools::install_github("rstudio/tensorflow")
 
 library(tensorflow)
-library(tfdatasets)
-#install_tensorflow()
-
-#require(devtools)
-#install_github("rstudio/reticulate")
-#install_github("rstudio/keras")
+install_tensorflow()
 
 library(keras)
 use_implementation("tensorflow")
@@ -48,16 +11,12 @@ tfe_enable_eager_execution(device_policy = "silent")
 
 library(purrr)
 library(glue)
+library(tfdatasets)
 
-#install.packages("reticulate")
-library(reticulate)
-#use_virtualenv("r-reticulate")
-#py_available(TRUE)
 
-#Prepare data
-img_shape <- c(256, 256, 3)
+img_shape <- c(512, 512, 3)
 
-content_path <-"~/Q1/originalRendition/GreatWave/isar.jpg"
+content_path <- "view.png"
 
 content_image <-  image_load(content_path, target_size = img_shape[1:2])
 content_image %>% 
@@ -66,7 +25,7 @@ content_image %>%
   as.raster() %>%
   plot()
 
-style_path <- "~/Q1/originalRendition/GreatWave/The_Great_Wave_off_Kanagawa.jpg"
+style_path <- "background.png"
 
 style_image <-  image_load(style_path, target_size = img_shape[1:2])
 style_image %>% 
@@ -75,8 +34,6 @@ style_image %>%
   as.raster() %>%
   plot()
 
-
-#create a wrapper
 load_and_process_image <- function(path) {
   img <- image_load(path, target_size = img_shape[1:2]) %>%
     image_to_array() %>%
@@ -98,7 +55,6 @@ deprocess_image <- function(x) {
   x
 }
 
-#setting the scene
 content_layers <- c("block5_conv2")
 style_layers <- c("block1_conv1",
                   "block2_conv1",
@@ -118,7 +74,6 @@ get_model <- function() {
   keras_model(vgg$input, model_outputs)
 }
 
-#define losses
 content_loss <- function(content_image, target) {
   k_sum(k_square(target - content_image))
 }
@@ -148,7 +103,6 @@ content_weight <- 100
 style_weight <- 0.8
 total_variation_weight <- 0.01
 
-#get model output for content and style 
 get_feature_representations <-
   function(model, content_path, style_path) {
     
@@ -176,8 +130,6 @@ get_feature_representations <-
     list(style_features, content_features)
   }
 
-
-#compute loss
 compute_loss <-
   function(model, loss_weights, init_image, gram_style_features, content_features) {
     
@@ -224,8 +176,6 @@ compute_loss <-
     list(loss, style_score, content_score, variation_score)
   }
 
-
-#compute gradients
 compute_grads <- 
   function(model, loss_weights, init_image, gram_style_features, content_features) {
     with(tf$GradientTape() %as% tape, {
@@ -240,7 +190,7 @@ compute_grads <-
     list(tape$gradient(total_loss, init_image), scores)
   }
 
-#run the model/training phase
+
 run_style_transfer <- function(content_path, style_path) {
   model <- get_model()
   walk(model$layers, function(layer) layer$trainable = FALSE)
@@ -266,8 +216,8 @@ run_style_transfer <- function(content_path, style_path) {
   norm_means <- c(103.939, 116.779, 123.68)
   min_vals <- -norm_means
   max_vals <- 255 - norm_means
-  num_iterations <- 500
   
+  num_iterations <- 200
   for (i in seq_len(num_iterations)) {
     # dim(grads) == (1, 128, 128, 3)
     c(grads, all_losses) %<-% compute_grads(model,
@@ -312,22 +262,3 @@ run_style_transfer <- function(content_path, style_path) {
   }
 
 c(best_image, best_loss) %<-% run_style_transfer(content_path, style_path)
-
-
-```
-
-2. Make your own tweaks. For example, try different tuning parameter values and report what you found, or try a new data set, or apply the method to a new application.
-
-**Report :**
-** In this part, Everyone looked through all the blogs in the link, and we picked one which attracted all of us -- "Neural style transfer with eager execution and Keras". Edward Yu, Charles Hu and Diyang Wu modified the original model in the blog, by debugging some error in the code to make it run. Then, our group interpreted the full model together and decided which parameter can be tuned to make the result looks better, we finally took up Yun Han and Xin Rui Zhang's idea by tunning the parameter values in shape of image. **
-
-## Q2 Deep learning on smart phone
-
-Professor May Wang in Department of Community Health Sciences (CHS) studies obesity in children and intervention strategies to prevent obesity. She asked me whether it is possible to develop an app such that a user takes a photo of a meal and the app will recognize and record the type of food (pizza, mac and cheese, burger, ...). 
-
-Your job: produce a prototype app for iPhone or Android smart phone. 
-
-Resources:  
-1. There are plenty of tutorials and YouTube clips on making apps for iPhone or Android.  
-2. Google's [Cloud Vision API](https://cloud.google.com/vision/) may supply an easy cloud solution.  
-3. [TensorFlow Lite](https://www.tensorflow.org/lite) may provide an easy mobile solution.  

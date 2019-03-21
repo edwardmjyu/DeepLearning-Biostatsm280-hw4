@@ -196,9 +196,299 @@ $(document).ready(function () {
 <h2>Q1 Learn by doing</h2>
 <p>I found the <a href="https://blogs.rstudio.com/tensorflow/">TensorFlow for R Blog</a> series at RStudio quite illuminating. Choose one blog that interests you and do following.</p>
 <ol style="list-style-type: decimal">
-<li><p>Reproduce the results in the blog.</p></li>
-<li><p>Make your own tweaks. For example, try different tuning parameter values and report what you found, or try a new data set, or apply the method to a new application.</p></li>
+<li>Reproduce the results in the blog.</li>
 </ol>
+<pre class="r"><code>#install.packages(&quot;devtools&quot;)
+library(&quot;devtools&quot;)
+#devtools::install_github(&quot;rstudio/tensorflow&quot;)
+
+install.packages(c(&quot;tensorflow&quot;, &quot;keras&quot;, &quot;tfdatasets&quot;))
+#install.packages(&quot;tfdatasets&quot;)
+
+library(tensorflow)
+library(tfdatasets)
+#install_tensorflow()
+
+#require(devtools)
+#install_github(&quot;rstudio/reticulate&quot;)
+#install_github(&quot;rstudio/keras&quot;)
+
+library(keras)
+use_implementation(&quot;tensorflow&quot;)
+
+library(tensorflow)
+tfe_enable_eager_execution(device_policy = &quot;silent&quot;)
+
+library(purrr)
+library(glue)
+
+#install.packages(&quot;reticulate&quot;)
+library(reticulate)
+#use_virtualenv(&quot;r-reticulate&quot;)
+#py_available(TRUE)
+
+#Prepare data
+img_shape &lt;- c(256, 256, 3)
+
+content_path &lt;-&quot;~/Q1/originalRendition/GreatWave/isar.jpg&quot;
+
+content_image &lt;-  image_load(content_path, target_size = img_shape[1:2])
+content_image %&gt;% 
+  image_to_array() %&gt;%
+  `/`(., 255) %&gt;%
+  as.raster() %&gt;%
+  plot()
+
+style_path &lt;- &quot;~/Q1/originalRendition/GreatWave/The_Great_Wave_off_Kanagawa.jpg&quot;
+
+style_image &lt;-  image_load(style_path, target_size = img_shape[1:2])
+style_image %&gt;% 
+  image_to_array() %&gt;%
+  `/`(., 255) %&gt;%
+  as.raster() %&gt;%
+  plot()
+
+
+#create a wrapper
+load_and_process_image &lt;- function(path) {
+  img &lt;- image_load(path, target_size = img_shape[1:2]) %&gt;%
+    image_to_array() %&gt;%
+    k_expand_dims(axis = 1) %&gt;%
+    imagenet_preprocess_input()
+}
+
+deprocess_image &lt;- function(x) {
+  x &lt;- x[1, , ,]
+  # Remove zero-center by mean pixel
+  x[, , 1] &lt;- x[, , 1] + 103.939
+  x[, , 2] &lt;- x[, , 2] + 116.779
+  x[, , 3] &lt;- x[, , 3] + 123.68
+  # 'BGR'-&gt;'RGB'
+  x &lt;- x[, , c(3, 2, 1)]
+  x[x &gt; 255] &lt;- 255
+  x[x &lt; 0] &lt;- 0
+  x[] &lt;- as.integer(x) / 255
+  x
+}
+
+#setting the scene
+content_layers &lt;- c(&quot;block5_conv2&quot;)
+style_layers &lt;- c(&quot;block1_conv1&quot;,
+                  &quot;block2_conv1&quot;,
+                  &quot;block3_conv1&quot;,
+                  &quot;block4_conv1&quot;,
+                  &quot;block5_conv1&quot;)
+
+num_content_layers &lt;- length(content_layers)
+num_style_layers &lt;- length(style_layers)
+
+get_model &lt;- function() {
+  vgg &lt;- application_vgg19(include_top = FALSE, weights = &quot;imagenet&quot;)
+  vgg$trainable &lt;- FALSE
+  style_outputs &lt;- map(style_layers, function(layer) vgg$get_layer(layer)$output)
+  content_outputs &lt;- map(content_layers, function(layer) vgg$get_layer(layer)$output)
+  model_outputs &lt;- c(style_outputs, content_outputs)
+  keras_model(vgg$input, model_outputs)
+}
+
+#define losses
+content_loss &lt;- function(content_image, target) {
+  k_sum(k_square(target - content_image))
+}
+
+gram_matrix &lt;- function(x) {
+  features &lt;- k_batch_flatten(k_permute_dimensions(x, c(3, 1, 2)))
+  gram &lt;- k_dot(features, k_transpose(features))
+  gram
+}
+
+style_loss &lt;- function(gram_target, combination) {
+  gram_comb &lt;- gram_matrix(combination)
+  k_sum(k_square(gram_target - gram_comb)) /
+    (4 * (img_shape[3] ^ 2) * (img_shape[1] * img_shape[2]) ^ 2)
+}
+
+total_variation_loss &lt;- function(image) {
+  y_ij  &lt;- image[1:(img_shape[1] - 1L), 1:(img_shape[2] - 1L),]
+  y_i1j &lt;- image[2:(img_shape[1]), 1:(img_shape[2] - 1L),]
+  y_ij1 &lt;- image[1:(img_shape[1] - 1L), 2:(img_shape[2]),]
+  a &lt;- k_square(y_ij - y_i1j)
+  b &lt;- k_square(y_ij - y_ij1)
+  k_sum(k_pow(a + b, 1.25))
+}
+
+content_weight &lt;- 100
+style_weight &lt;- 0.8
+total_variation_weight &lt;- 0.01
+
+#get model output for content and style 
+get_feature_representations &lt;-
+  function(model, content_path, style_path) {
+    
+    # dim == (1, 128, 128, 3)
+    style_image &lt;-
+      load_and_process_image(style_path) %&gt;% k_cast(&quot;float32&quot;)
+    # dim == (1, 128, 128, 3)
+    content_image &lt;-
+      load_and_process_image(content_path) %&gt;% k_cast(&quot;float32&quot;)
+    # dim == (2, 128, 128, 3)
+    stack_images &lt;- k_concatenate(list(style_image, content_image), axis = 1)
+    
+    # length(model_outputs) == 6
+    # dim(model_outputs[[1]]) = (2, 128, 128, 64)
+    # dim(model_outputs[[6]]) = (2, 8, 8, 512)
+    model_outputs &lt;- model(stack_images)
+    
+    style_features &lt;- 
+      model_outputs[1:num_style_layers] %&gt;%
+      map(function(batch) batch[1, , , ])
+    content_features &lt;- 
+      model_outputs[(num_style_layers + 1):(num_style_layers + num_content_layers)] %&gt;%
+      map(function(batch) batch[2, , , ])
+    
+    list(style_features, content_features)
+  }
+
+
+#compute loss
+compute_loss &lt;-
+  function(model, loss_weights, init_image, gram_style_features, content_features) {
+    
+    c(style_weight, content_weight) %&lt;-% loss_weights
+    model_outputs &lt;- model(init_image)
+    style_output_features &lt;- model_outputs[1:num_style_layers]
+    content_output_features &lt;-
+      model_outputs[(num_style_layers + 1):(num_style_layers + num_content_layers)]
+    
+    # style loss
+    weight_per_style_layer &lt;- 1 / num_style_layers
+    style_score &lt;- 0
+    # dim(style_zip[[5]][[1]]) == (512, 512)
+    style_zip &lt;- transpose(list(gram_style_features, style_output_features))
+    for (l in 1:length(style_zip)) {
+      # for l == 1:
+      # dim(target_style) == (64, 64)
+      # dim(comb_style) == (1, 128, 128, 64)
+      c(target_style, comb_style) %&lt;-% style_zip[[l]]
+      style_score &lt;- style_score + weight_per_style_layer * 
+        style_loss(target_style, comb_style[1, , , ])
+    }
+    
+    # content loss
+    weight_per_content_layer &lt;- 1 / num_content_layers
+    content_score &lt;- 0
+    content_zip &lt;- transpose(list(content_features, content_output_features))
+    for (l in 1:length(content_zip)) {
+      # dim(comb_content) ==  (1, 8, 8, 512)
+      # dim(target_content) == (8, 8, 512)
+      c(target_content, comb_content) %&lt;-% content_zip[[l]]
+      content_score &lt;- content_score + weight_per_content_layer *
+        content_loss(comb_content[1, , , ], target_content)
+    }
+    
+    # total variation loss
+    variation_loss &lt;- total_variation_loss(init_image[1, , ,])
+    
+    style_score &lt;- style_score * style_weight
+    content_score &lt;- content_score * content_weight
+    variation_score &lt;- variation_loss * total_variation_weight
+    
+    loss &lt;- style_score + content_score + variation_score
+    list(loss, style_score, content_score, variation_score)
+  }
+
+
+#compute gradients
+compute_grads &lt;- 
+  function(model, loss_weights, init_image, gram_style_features, content_features) {
+    with(tf$GradientTape() %as% tape, {
+      scores &lt;-
+        compute_loss(model,
+                     loss_weights,
+                     init_image,
+                     gram_style_features,
+                     content_features)
+    })
+    total_loss &lt;- scores[[1]]
+    list(tape$gradient(total_loss, init_image), scores)
+  }
+
+#run the model/training phase
+run_style_transfer &lt;- function(content_path, style_path) {
+  model &lt;- get_model()
+  walk(model$layers, function(layer) layer$trainable = FALSE)
+  
+  c(style_features, content_features) %&lt;-% 
+    get_feature_representations(model, content_path, style_path)
+  # dim(gram_style_features[[1]]) == (64, 64)
+  gram_style_features &lt;- map(style_features, function(feature) gram_matrix(feature))
+  
+  init_image &lt;- load_and_process_image(content_path)
+  init_image &lt;- tf$contrib$eager$Variable(init_image, dtype = &quot;float32&quot;)
+  
+  optimizer &lt;- tf$train$AdamOptimizer(learning_rate = 1,
+                                      beta1 = 0.99,
+                                      epsilon = 1e-1)
+  
+  c(best_loss, best_image) %&lt;-% list(Inf, NULL)
+  loss_weights &lt;- list(style_weight, content_weight)
+  
+  start_time &lt;- Sys.time()
+  global_start &lt;- Sys.time()
+  
+  norm_means &lt;- c(103.939, 116.779, 123.68)
+  min_vals &lt;- -norm_means
+  max_vals &lt;- 255 - norm_means
+  num_iterations &lt;- 500
+  
+  for (i in seq_len(num_iterations)) {
+    # dim(grads) == (1, 128, 128, 3)
+    c(grads, all_losses) %&lt;-% compute_grads(model,
+                                            loss_weights,
+                                            init_image,
+                                            gram_style_features,
+                                            content_features)
+    c(loss, style_score, content_score, variation_score) %&lt;-% all_losses
+    optimizer$apply_gradients(list(tuple(grads, init_image)))
+    clipped &lt;- tf$clip_by_value(init_image, min_vals, max_vals)
+    init_image$assign(clipped)
+    
+    end_time &lt;- Sys.time()
+    
+    if (k_cast_to_floatx(loss) &lt; best_loss) {
+      best_loss &lt;- k_cast_to_floatx(loss)
+      best_image &lt;- init_image
+    }
+    
+    if (i %% 50 == 0) {
+      glue(&quot;Iteration: {i}&quot;) %&gt;% print()
+      glue(
+        &quot;Total loss: {k_cast_to_floatx(loss)},
+        style loss: {k_cast_to_floatx(style_score)},
+        content loss: {k_cast_to_floatx(content_score)},
+        total variation loss: {k_cast_to_floatx(variation_score)},
+        time for 1 iteration: {(Sys.time() - start_time) %&gt;% round(2)}&quot;
+      ) %&gt;% print()
+      
+      if (i %% 100 == 0) {
+        png(paste0(&quot;style_epoch_&quot;, i, &quot;.png&quot;))
+        plot_image &lt;- best_image$numpy()
+        plot_image &lt;- deprocess_image(plot_image)
+        plot(as.raster(plot_image), main = glue(&quot;Iteration {i}&quot;))
+        dev.off()
+      }
+    }
+  }
+  
+  glue(&quot;Total time: {Sys.time() - global_start} seconds&quot;) %&gt;% print()
+  list(best_image, best_loss)
+  }
+
+c(best_image, best_loss) %&lt;-% run_style_transfer(content_path, style_path)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Make your own tweaks. For example, try different tuning parameter values and report what you found, or try a new data set, or apply the method to a new application.</li>
+</ol>
+<p><strong>Report :</strong> ** In this part, Everyone looked through all the blogs in the link, and we picked one which attracted all of us – “Neural style transfer with eager execution and Keras”. Edward Yu, Charles Hu and Diyang Wu modified the original model in the blog, by debugging some error in the code to make it run. Then, our group interpreted the full model together and decided which parameter can be tuned to make the result looks better, we finally took up Yun Han and Xin Rui Zhang’s idea by tunning the parameter values in shape of image. **</p>
 </div>
 <div id="q2-deep-learning-on-smart-phone" class="section level2">
 <h2>Q2 Deep learning on smart phone</h2>
