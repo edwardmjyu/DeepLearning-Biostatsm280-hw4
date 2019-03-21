@@ -17,24 +17,11 @@ I found the [TensorFlow for R Blog](https://blogs.rstudio.com/tensorflow/) serie
 
 1. Reproduce the results in the blog.  
 
-<<<<<<< HEAD
 ``` Solution ```
   
 Our group searched through the R blog's website for an interesting project to undertake. After combing through several blogs, our group settled on the Neural style transfer with eager execution and Keras'(https://blogs.rstudio.com/tensorflow/posts/2018-09-10-eager-style-transfer/). The code uses neural style transfer techniques to transmute an original picture into the 'stye' of a second picture. The model that the blog utilizes is a simplied version of model `VGG19`, which is a trained model on `ImageNet`. The blog modifies the `VGG19` model by computing `loss function` and back propagating it to get the direction of changes that we want. Specific explanations of the model functionality will be provided later in each step. In order to run the the code properly, we modified the original code on the blog since the original code contained errors. We added comments into the code section to explain each section of the code:
-=======
-  ```Solution ```
-  
-For this problem, we found the model that interests us the most which can be accessed here(https://blogs.rstudio.com/tensorflow/posts/2018-09-10-eager-style-transfer/). Essentially the model is consisted of takes input of two images, which are base image and style image respectively, and output one base image with style transfer associated with the style image. The model that the blog utilizes is a simplied version of model `VGG19`, which is a trained model on `ImageNet`. The blog modifies the `VGG19` model by computing `loss function` and back propagating it to get the direction of changes that we want. Specific explannations of the model functionality will be provided later in each step. 
 
-```{r eval=FALSE}
-
->>>>>>> ce1c6413ea89456733d714336963491b566cb28f
-#install.packages("devtools")
-library("devtools")
-#devtools::install_github("rstudio/tensorflow")
->>>>>>> 3a93353d1647a1f04288fc3e687df8875168b2a7
-
-```{r eval=FALSE}
+```{r eval=FALSE, results = "hidden"}
 #installing necessary packages
 install.packages(c("tensorflow", "keras", "tfdatasets"))
 
@@ -43,18 +30,19 @@ library(tfdatasets)
 library(keras)
 library(purrr)
 library(glue)
+library(reticulate)
 use_implementation("tensorflow")
 tfe_enable_eager_execution(device_policy = "silent")
+```
 
-#install.packages("reticulate")
-library(reticulate)
-#use_virtualenv("r-reticulate")
-#py_available(TRUE)
-
-#Prepare data
+The `img_shape` determines the resolution dimensions of `content_image` and `style_image`. The original blog post uses resolution 128x128. Here we consider resolution as one of our tuning parameters. We will compare and contrast different resolution qualities and its effect on the final trasmuted image. 
+```{r}
 img_shape <- c(256, 256, 3)
+```
 
-content_path <-"~/Q1/originalRendition/GreatWave/isar.jpg"
+We load the original content image:
+```{r}
+content_path <-"~/biostatm280-winter2019-hw4/Q1/originalRendition/GreatWave/isar.jpg"
 
 content_image <-  image_load(content_path, target_size = img_shape[1:2])
 content_image %>% 
@@ -62,8 +50,11 @@ content_image %>%
   `/`(., 255) %>%
   as.raster() %>%
   plot()
+```
 
-style_path <- "~/Q1/originalRendition/GreatWave/The_Great_Wave_off_Kanagawa.jpg"
+Now we load the style image:
+```{r}
+style_path <- "~/biostatm280-winter2019-hw4/Q1/originalRendition/GreatWave/The_Great_Wave_off_Kanagawa.jpg"
 
 style_image <-  image_load(style_path, target_size = img_shape[1:2])
 style_image %>% 
@@ -71,8 +62,10 @@ style_image %>%
   `/`(., 255) %>%
   as.raster() %>%
   plot()
+```
 
-
+Create the wrapper that loads and preprocesses the input images. The model that we employ here is `VGG19`, a network that has been trained on `ImageNet`. 
+```{r eval=FALSE}
 #create a wrapper
 load_and_process_image <- function(path) {
   img <- image_load(path, target_size = img_shape[1:2]) %>%
@@ -94,7 +87,10 @@ deprocess_image <- function(x) {
   x[] <- as.integer(x) / 255
   x
 }
+```
 
+Now we explore the layers of the neural network. Within this model, there is no training, but a neural style transfer back propagates the loss to the input layer to get closer to our desired style image. There are two primary layers content and style. The content layer is compared to the style layer via loss function. There are 5 style layers are analagous to level features such as texture, shapes, strokes, etc:
+```{r eval=FALSE}
 #setting the scene
 content_layers <- c("block5_conv2")
 style_layers <- c("block1_conv1",
@@ -114,7 +110,9 @@ get_model <- function() {
   model_outputs <- c(style_outputs, content_outputs)
   keras_model(vgg$input, model_outputs)
 }
+```
 
+```{r eval = FALSE}
 #define losses
 content_loss <- function(content_image, target) {
   k_sum(k_square(target - content_image))
