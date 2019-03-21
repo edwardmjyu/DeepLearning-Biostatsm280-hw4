@@ -17,7 +17,7 @@ I found the [TensorFlow for R Blog](https://blogs.rstudio.com/tensorflow/) serie
 
 1. Reproduce the results in the blog.  
 
-```{r}
+```{r eval=FALSE}
 #install.packages("devtools")
 library("devtools")
 #devtools::install_github("rstudio/tensorflow")
@@ -310,6 +310,9 @@ c(best_image, best_loss) %<-% run_style_transfer(content_path, style_path)
 ```
 
 2. Make your own tweaks. For example, try different tuning parameter values and report what you found, or try a new data set, or apply the method to a new application.
+
+**Report :**
+** In this part, Everyone looked through all the blogs in the link, and we picked one which attracted all of us -- "Neural style transfer with eager execution and Keras". Edward Yu, Charles Hu and Diyang Wu modified the original model in the blog, by debugging some error in the code to make it run. Then, our group interpreted the full model together and decided which parameter can be tuned to make the result looks better, we finally took up Yun Han and Xin Rui Zhang's idea by tunning the parameter values in shape of image. **
 
 ## Q2 Deep learning on smart phone
 
