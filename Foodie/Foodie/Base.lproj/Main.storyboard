@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="f2J-fD-4Yu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tQb-0p-7Ed">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -18,61 +18,81 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select a photo to see what your naughty children ate today" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VcR-me-Kke">
-                                <rect key="frame" x="20" y="148" width="334" height="63"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="22"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Record:" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Kbu-5R-jvL">
-                                <rect key="frame" x="16" y="528" width="344" height="225"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Master" translatesAutoresizingMaskIntoConstraints="NO" id="kPQ-p2-uXd">
+                                <rect key="frame" x="0.0" y="269" width="375" height="238"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Selecte a photo to see what your naughty children ate today" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="aa9-7N-BkW">
+                                <rect key="frame" x="36" y="106" width="303" height="128"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="91F-Wu-bcq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="22"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cafield1" translatesAutoresizingMaskIntoConstraints="NO" id="Zlg-2U-3iJ">
-                                <rect key="frame" x="23" y="240" width="331" height="280"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Record:" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="uv7-MB-Qbc">
+                                <rect key="frame" x="31" y="540" width="313" height="206"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </imageView>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="206" id="bug-Er-DQU"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="22"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
-                        <color key="backgroundColor" red="0.90380366160000003" green="0.60397046232876717" blue="0.08390886166" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="0.76470588235294112" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="kPQ-p2-uXd" firstAttribute="top" secondItem="aa9-7N-BkW" secondAttribute="bottom" constant="35" id="4qW-UR-gGN"/>
+                            <constraint firstItem="kPQ-p2-uXd" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="89i-Wo-flK"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="aa9-7N-BkW" secondAttribute="trailing" constant="36" id="Dqp-Fl-4f5"/>
+                            <constraint firstItem="uv7-MB-Qbc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="31" id="FMO-sC-d3d"/>
+                            <constraint firstItem="uv7-MB-Qbc" firstAttribute="top" secondItem="kPQ-p2-uXd" secondAttribute="bottom" constant="33" id="HSS-2z-ca2"/>
+                            <constraint firstItem="uv7-MB-Qbc" firstAttribute="top" secondItem="kPQ-p2-uXd" secondAttribute="bottom" constant="33" id="He2-WD-wby"/>
+                            <constraint firstItem="kPQ-p2-uXd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Kwy-3w-SGV"/>
+                            <constraint firstItem="kPQ-p2-uXd" firstAttribute="top" secondItem="aa9-7N-BkW" secondAttribute="bottom" constant="35" id="Llx-Fl-uHS"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="uv7-MB-Qbc" secondAttribute="trailing" constant="31" id="NI0-Pd-Ecf"/>
+                            <constraint firstItem="aa9-7N-BkW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="18" id="NwT-H7-SRW"/>
+                            <constraint firstItem="aa9-7N-BkW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="36" id="pC1-AR-TdY"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="uv7-MB-Qbc" secondAttribute="bottom" constant="32" id="pxP-Zx-WXK"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="EiB-xW-DlY">
-                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="mdV-Kv-nc4">
+                    <navigationItem key="navigationItem" id="4cd-sv-fxh">
+                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="O80-z9-Mvw">
                             <connections>
-                                <action selector="cameraTapped:" destination="BYZ-38-t0r" id="acs-O0-bMQ"/>
+                                <action selector="cameraTapped:" destination="BYZ-38-t0r" id="EGz-ks-qQL"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="foodRecord" destination="uv7-MB-Qbc" id="UcO-Uj-IKa"/>
+                        <outlet property="imageView" destination="kPQ-p2-uXd" id="a2P-9X-qOe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-57" y="-774"/>
+            <point key="canvasLocation" x="312.80000000000001" y="-608.12807881773404"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="ZCH-TE-HfR">
+        <scene sceneID="Sza-4E-hMI">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="f2J-fD-4Yu" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tQb-0p-7Ed" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="r7N-mU-RiF">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mL9-wy-MRv">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="7TC-P5-vEq"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="vG1-xH-X81"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EOS-fT-jLb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zCT-3q-y1I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-900" y="-774"/>
+            <point key="canvasLocation" x="-366" y="-608"/>
         </scene>
     </scenes>
     <resources>
-        <image name="cafield1" width="213.33332824707031" height="160"/>
+        <image name="Master" width="213.33332824707031" height="160"/>
     </resources>
 </document>
