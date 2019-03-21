@@ -57,6 +57,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             }
             
             if let firstResult = results.first {
+<<<<<<< HEAD
                 //                if firstResult.identifier.contains("hotdog") {
                 //                    self.navigationItem.title = "Hotdog"
                 //                } else if firstResult.identifier.contains("burger") {
@@ -71,6 +72,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 //                    self.navigationItem.title = "Not Hotdog! Wait...Thug Hotdog!"
                 //                }
                 //else {
+=======
+>>>>>>> 7ab2f9db11bc49d1a7ca93933ae4b3834f115396
                 guard let Observation = results.first else {
                     fatalError("try more you cam nail it!")
                 }
@@ -80,7 +83,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 self.navigationItem.title = "\(nameOfFood)"
                 
                 // collect results in UITexView
+<<<<<<< HEAD
   
+=======
+                self.foodRecordString = self.foodRecordString + "  [\(nameOfFood)]"
+                self.foodRecord.text = self.foodRecordString
+>>>>>>> 7ab2f9db11bc49d1a7ca93933ae4b3834f115396
                 //}
             }
             print(results)
