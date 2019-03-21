@@ -19,17 +19,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Master" translatesAutoresizingMaskIntoConstraints="NO" id="kPQ-p2-uXd">
-                                <rect key="frame" x="0.0" y="269" width="375" height="238"/>
+                                <rect key="frame" x="31" y="258" width="313" height="251"/>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Selecte a photo to see what your naughty children ate today" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="aa9-7N-BkW">
-                                <rect key="frame" x="36" y="106" width="303" height="128"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="91F-Wu-bcq"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="22"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Record:" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="uv7-MB-Qbc">
                                 <rect key="frame" x="31" y="540" width="313" height="206"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -39,21 +30,30 @@
                                 <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="22"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Selecte a photo to see what your naughty children ate today!" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="aa9-7N-BkW">
+                                <rect key="frame" x="21" y="150" width="333" height="128"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="91F-Wu-bcq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="22"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.76470588235294112" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="kPQ-p2-uXd" firstAttribute="top" secondItem="aa9-7N-BkW" secondAttribute="bottom" constant="35" id="4qW-UR-gGN"/>
-                            <constraint firstItem="kPQ-p2-uXd" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="89i-Wo-flK"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="aa9-7N-BkW" secondAttribute="trailing" constant="36" id="Dqp-Fl-4f5"/>
-                            <constraint firstItem="uv7-MB-Qbc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="31" id="FMO-sC-d3d"/>
-                            <constraint firstItem="uv7-MB-Qbc" firstAttribute="top" secondItem="kPQ-p2-uXd" secondAttribute="bottom" constant="33" id="HSS-2z-ca2"/>
-                            <constraint firstItem="uv7-MB-Qbc" firstAttribute="top" secondItem="kPQ-p2-uXd" secondAttribute="bottom" constant="33" id="He2-WD-wby"/>
-                            <constraint firstItem="kPQ-p2-uXd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Kwy-3w-SGV"/>
-                            <constraint firstItem="kPQ-p2-uXd" firstAttribute="top" secondItem="aa9-7N-BkW" secondAttribute="bottom" constant="35" id="Llx-Fl-uHS"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="uv7-MB-Qbc" secondAttribute="trailing" constant="31" id="NI0-Pd-Ecf"/>
-                            <constraint firstItem="aa9-7N-BkW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="18" id="NwT-H7-SRW"/>
-                            <constraint firstItem="aa9-7N-BkW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="36" id="pC1-AR-TdY"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="uv7-MB-Qbc" secondAttribute="bottom" constant="32" id="pxP-Zx-WXK"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="aa9-7N-BkW" secondAttribute="trailing" constant="21" id="5zn-Oa-vIQ"/>
+                            <constraint firstItem="uv7-MB-Qbc" firstAttribute="top" secondItem="kPQ-p2-uXd" secondAttribute="bottom" constant="31" id="Dct-4m-ET9"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="kPQ-p2-uXd" secondAttribute="trailing" constant="31" id="DzD-JV-hYS"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="uv7-MB-Qbc" secondAttribute="bottom" constant="32" id="M83-jg-k6W"/>
+                            <constraint firstItem="uv7-MB-Qbc" firstAttribute="top" secondItem="kPQ-p2-uXd" secondAttribute="bottom" constant="31" id="Mui-0W-Gh7"/>
+                            <constraint firstItem="uv7-MB-Qbc" firstAttribute="top" secondItem="aa9-7N-BkW" secondAttribute="bottom" constant="262" id="VFe-g2-4Z8"/>
+                            <constraint firstItem="aa9-7N-BkW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="62" id="XgG-EA-0Rq"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="uv7-MB-Qbc" secondAttribute="trailing" constant="31" id="bnr-9o-nVt"/>
+                            <constraint firstItem="aa9-7N-BkW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="21" id="mhF-hr-gtJ"/>
+                            <constraint firstItem="kPQ-p2-uXd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="31" id="uia-Xz-1Nm"/>
+                            <constraint firstItem="uv7-MB-Qbc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="31" id="yDT-ZF-r35"/>
+                            <constraint firstItem="kPQ-p2-uXd" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="170" id="ySY-WM-ne9"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
