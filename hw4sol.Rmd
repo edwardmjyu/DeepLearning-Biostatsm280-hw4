@@ -17,9 +17,22 @@ I found the [TensorFlow for R Blog](https://blogs.rstudio.com/tensorflow/) serie
 
 1. Reproduce the results in the blog.  
 
+<<<<<<< HEAD
 ``` Solution ```
   
 Our group searched through the R blog's website for an interesting project to undertake. After combing through several blogs, our group settled on the Neural style transfer with eager execution and Keras'(https://blogs.rstudio.com/tensorflow/posts/2018-09-10-eager-style-transfer/). The code uses neural style transfer techniques to transmute an original picture into the 'stye' of a second picture. The model that the blog utilizes is a simplied version of model `VGG19`, which is a trained model on `ImageNet`. The blog modifies the `VGG19` model by computing `loss function` and back propagating it to get the direction of changes that we want. Specific explanations of the model functionality will be provided later in each step. In order to run the the code properly, we modified the original code on the blog since the original code contained errors. We added comments into the code section to explain each section of the code:
+=======
+  ```Solution ```
+  
+For this problem, we found the model that interests us the most which can be accessed here(https://blogs.rstudio.com/tensorflow/posts/2018-09-10-eager-style-transfer/). Essentially the model is consisted of takes input of two images, which are base image and style image respectively, and output one base image with style transfer associated with the style image. The model that the blog utilizes is a simplied version of model `VGG19`, which is a trained model on `ImageNet`. The blog modifies the `VGG19` model by computing `loss function` and back propagating it to get the direction of changes that we want. Specific explannations of the model functionality will be provided later in each step. 
+
+```{r eval=FALSE}
+
+>>>>>>> ce1c6413ea89456733d714336963491b566cb28f
+#install.packages("devtools")
+library("devtools")
+#devtools::install_github("rstudio/tensorflow")
+>>>>>>> 3a93353d1647a1f04288fc3e687df8875168b2a7
 
 ```{r eval=FALSE}
 #installing necessary packages
