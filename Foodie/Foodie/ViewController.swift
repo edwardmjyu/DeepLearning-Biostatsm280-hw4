@@ -1,5 +1,4 @@
 //
-//
 //  ViewController.swift
 //  Foodie
 //
@@ -20,7 +19,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         // Do any additional setup after loading the view, typically from a nib.
         
         imagePicker.delegate = self //i.e this current view control
-        imagePicker.sourceType = .photoLibrary
+        imagePicker.sourceType = .camera
         imagePicker.allowsEditing = false
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -62,7 +61,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 }
                 else {
                     guard let Observation = results.first else {
-                        fatalError("try more you cam nail it!")
+                        fatalError("can't extract results from model!")
                     }
                     self.navigationItem.title = "I'm not sure but it maybe \(Observation.identifier)"
                 }
@@ -85,4 +84,3 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
 }
-
