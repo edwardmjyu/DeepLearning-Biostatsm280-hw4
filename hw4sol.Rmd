@@ -18,36 +18,33 @@ I found the [TensorFlow for R Blog](https://blogs.rstudio.com/tensorflow/) serie
 1. Reproduce the results in the blog.  
 
 <<<<<<< HEAD
-```{r eval=FALSE}
+``` Solution ```
+  
+Our group searched through the R blog's website for an interesting project to undertake. After combing through several blogs, our group settled on the Neural style transfer with eager execution and Keras'(https://blogs.rstudio.com/tensorflow/posts/2018-09-10-eager-style-transfer/). The code uses neural style transfer techniques to transmute an original picture into the 'stye' of a second picture. The model that the blog utilizes is a simplied version of model `VGG19`, which is a trained model on `ImageNet`. The blog modifies the `VGG19` model by computing `loss function` and back propagating it to get the direction of changes that we want. Specific explanations of the model functionality will be provided later in each step. In order to run the the code properly, we modified the original code on the blog since the original code contained errors. We added comments into the code section to explain each section of the code:
 =======
   ```Solution ```
+  
 For this problem, we found the model that interests us the most which can be accessed here(https://blogs.rstudio.com/tensorflow/posts/2018-09-10-eager-style-transfer/). Essentially the model is consisted of takes input of two images, which are base image and style image respectively, and output one base image with style transfer associated with the style image. The model that the blog utilizes is a simplied version of model `VGG19`, which is a trained model on `ImageNet`. The blog modifies the `VGG19` model by computing `loss function` and back propagating it to get the direction of changes that we want. Specific explannations of the model functionality will be provided later in each step. 
 
-```{r}
+```{r eval=FALSE}
+
 >>>>>>> ce1c6413ea89456733d714336963491b566cb28f
 #install.packages("devtools")
 library("devtools")
 #devtools::install_github("rstudio/tensorflow")
+>>>>>>> 3a93353d1647a1f04288fc3e687df8875168b2a7
 
+```{r eval=FALSE}
+#installing necessary packages
 install.packages(c("tensorflow", "keras", "tfdatasets"))
-#install.packages("tfdatasets")
 
 library(tensorflow)
 library(tfdatasets)
-#install_tensorflow()
-
-#require(devtools)
-#install_github("rstudio/reticulate")
-#install_github("rstudio/keras")
-
 library(keras)
-use_implementation("tensorflow")
-
-library(tensorflow)
-tfe_enable_eager_execution(device_policy = "silent")
-
 library(purrr)
 library(glue)
+use_implementation("tensorflow")
+tfe_enable_eager_execution(device_policy = "silent")
 
 #install.packages("reticulate")
 library(reticulate)
@@ -318,8 +315,8 @@ c(best_image, best_loss) %<-% run_style_transfer(content_path, style_path)
 
 2. Make your own tweaks. For example, try different tuning parameter values and report what you found, or try a new data set, or apply the method to a new application.
 
-**Report :**
-** In this part, Everyone looked through all the blogs in the link, and we picked one which attracted all of us -- "Neural style transfer with eager execution and Keras". Edward Yu, Charles Hu and Diyang Wu modified the original model in the blog, by debugging some error in the code to make it run. Then, our group interpreted the full model together and decided which parameter can be tuned to make the result looks better, we finally took up Yun Han and Xin Rui Zhang's idea by tunning the parameter values in shape of image. **
+** Report: **
+After reproducingg the exIn this part, everyone looked through all the blogs in the link, and we picked one which attracted all of us -- "Neural style transfer with eager execution and Keras". Edward Yu, Charles Hu and Diyang Wu modified the original model in the blog, by debugging some error in the code to make it run. Then, our group interpreted the full model together and decided which parameter can be tuned to make the result looks better, we finally took up Yun Han and Xin Rui Zhang's idea by tunning the parameter values in shape of image.
 
 ## Q2 Deep learning on smart phone
 

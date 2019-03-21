@@ -34,6 +34,9 @@ vignettes/*.pdf
 
 # Shiny token, see https://shiny.rstudio.com/articles/shinyapps.html
 rsconnect/
+<<<<<<< HEAD
+.Rproj.user
+=======
 
 ##########################
 
@@ -115,3 +118,4 @@ fastlane/test_output
 # https://github.com/johnno1962/injectionforxcode
 
 iOSInjectionProject/
+>>>>>>> 7ab2f9db11bc49d1a7ca93933ae4b3834f115396
