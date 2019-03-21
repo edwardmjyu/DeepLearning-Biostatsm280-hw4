@@ -58,20 +58,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             
             if let firstResult = results.first {
 <<<<<<< HEAD
-                //                if firstResult.identifier.contains("hotdog") {
-                //                    self.navigationItem.title = "Hotdog"
-                //                } else if firstResult.identifier.contains("burger") {
-                //                    self.navigationItem.title = "Burger"
-                //                } else if firstResult.identifier.contains("ice_cream") {
-                //                    self.navigationItem.title = "Ice cream"
-                //                } else if firstResult.identifier.contains("hotpot") {
-                //                    self.navigationItem.title = "Hot pot"
-                //                } else if firstResult.identifier.contains("pizza") {
-                //                    self.navigationItem.title = "Pizza"
-                //                } else if firstResult.identifier.contains("dark glasses"){
-                //                    self.navigationItem.title = "Not Hotdog! Wait...Thug Hotdog!"
-                //                }
-                //else {
+
 =======
 >>>>>>> 7ab2f9db11bc49d1a7ca93933ae4b3834f115396
                 guard let Observation = results.first else {
