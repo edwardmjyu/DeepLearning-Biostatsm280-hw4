@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9BA0AD8822443E37009DB6CC /* Food101.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 9BA0AD8722443E37009DB6CC /* Food101.mlmodel */; };
 		C4C0515322409276000EE45A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0515222409276000EE45A /* AppDelegate.swift */; };
 		C4C0515522409276000EE45A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0515422409276000EE45A /* ViewController.swift */; };
 		C4C0515822409276000EE45A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4C0515622409276000EE45A /* Main.storyboard */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9BA0AD8722443E37009DB6CC /* Food101.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Food101.mlmodel; sourceTree = "<group>"; };
 		C4C0514F22409276000EE45A /* Foodie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Foodie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4C0515222409276000EE45A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C4C0515422409276000EE45A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 				C4C0515922409277000EE45A /* Assets.xcassets */,
 				C4C0515B22409277000EE45A /* LaunchScreen.storyboard */,
 				C4C05164224095F7000EE45A /* Inceptionv3.mlmodel */,
+				9BA0AD8722443E37009DB6CC /* Food101.mlmodel */,
 				C4C0515E22409277000EE45A /* Info.plist */,
 			);
 			path = Foodie;
@@ -139,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4C0515522409276000EE45A /* ViewController.swift in Sources */,
+				9BA0AD8822443E37009DB6CC /* Food101.mlmodel in Sources */,
 				C4C05165224095F7000EE45A /* Inceptionv3.mlmodel in Sources */,
 				C4C0515322409276000EE45A /* AppDelegate.swift in Sources */,
 			);

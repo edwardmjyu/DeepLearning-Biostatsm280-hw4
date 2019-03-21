@@ -1,8 +1,8 @@
 //
 //  ViewController.swift
-//  Foodie
+//  SeaFood
 //
-//  Created by 张唯维 on 3/18/19.
+//  Created by 张唯维 on 3/17/19.
 //  Copyright © 2019 张唯维. All rights reserved.
 //
 
@@ -10,18 +10,26 @@ import UIKit
 import CoreML
 import Vision
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    
+    @IBOutlet weak var foodRecord: UITextView!
+    var foodRecordString = "Record: "
+    
     @IBOutlet weak var imageView: UIImageView!
+    
     let imagePicker = UIImagePickerController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         imagePicker.delegate = self //i.e this current view control
-        imagePicker.sourceType = .camera
+        imagePicker.sourceType = .photoLibrary
         imagePicker.allowsEditing = false
     }
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         if let userPickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
@@ -35,8 +43,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         imagePicker.dismiss(animated: true, completion: nil)
     }
     
+    
+    
+    
     func detect(image: CIImage){
-        guard let model = try? VNCoreMLModel(for: Inceptionv3().model) else {
+        guard let model = try? VNCoreMLModel(for: Food101().model) else {
             fatalError("Loading CoreML Mosel Failed")
         }
         
@@ -46,26 +57,33 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             }
             
             if let firstResult = results.first {
-                if firstResult.identifier.contains("hotdog") {
-                    self.navigationItem.title = "Hotdog"
-                } else if firstResult.identifier.contains("burger") {
-                    self.navigationItem.title = "Burger"
-                } else if firstResult.identifier.contains("ice cream") {
-                    self.navigationItem.title = "Ice cream"
-                } else if firstResult.identifier.contains("hotpot") {
-                    self.navigationItem.title = "Hot pot"
-                } else if firstResult.identifier.contains("pizza") {
-                    self.navigationItem.title = "Pizza"
-                } else if firstResult.identifier.contains("dark glasses"){
-                    self.navigationItem.title = "Not Hotdog! Wait...Thug Hotdog!"
+                //                if firstResult.identifier.contains("hotdog") {
+                //                    self.navigationItem.title = "Hotdog"
+                //                } else if firstResult.identifier.contains("burger") {
+                //                    self.navigationItem.title = "Burger"
+                //                } else if firstResult.identifier.contains("ice_cream") {
+                //                    self.navigationItem.title = "Ice cream"
+                //                } else if firstResult.identifier.contains("hotpot") {
+                //                    self.navigationItem.title = "Hot pot"
+                //                } else if firstResult.identifier.contains("pizza") {
+                //                    self.navigationItem.title = "Pizza"
+                //                } else if firstResult.identifier.contains("dark glasses"){
+                //                    self.navigationItem.title = "Not Hotdog! Wait...Thug Hotdog!"
+                //                }
+                //else {
+                guard let Observation = results.first else {
+                    fatalError("try more you cam nail it!")
                 }
-                else {
-                    guard let Observation = results.first else {
-                        fatalError("can't extract results from model!")
-                    }
-                    self.navigationItem.title = "I'm not sure but it maybe \(Observation.identifier)"
-                }
+                // relace"_" in food name with " " to make user comfortable woc wo tai ta ma li hai le
+                let nameOfFood = Observation.identifier.replacingOccurrences(of: "_", with: " ")
+                print(firstResult)
+                self.navigationItem.title = "\(nameOfFood)"
+                
+                // collect results in UITexView
+  
+                //}
             }
+            print(results)
             
         }
         
@@ -77,10 +95,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         catch { //try to do it and catch error occured
             print(error)
         }
-    }
-
-    @IBAction func cameraTapped(_ sender: UIBarButtonItem) {
-        present(imagePicker, animated: true, completion: nil)
+        
     }
     
+    
+    
+    @IBAction func cameraTapped(_ sender: UIBarButtonItem) {
+        
+        present(imagePicker, animated: true, completion: nil)
+    }
 }
+
+
+
