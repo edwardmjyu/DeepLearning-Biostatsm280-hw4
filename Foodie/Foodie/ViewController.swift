@@ -36,7 +36,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func detect(image: CIImage){
-        guard let model = try? VNCoreMLModel(for: Inceptionv3().model) else {
+        guard let model = try? VNCoreMLModel(for: Food101().model) else {
             fatalError("Loading CoreML Mosel Failed")
         }
         
@@ -46,26 +46,20 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             }
             
             if let firstResult = results.first {
-                if firstResult.identifier.contains("hotdog") {
-                    self.navigationItem.title = "Hotdog"
-                } else if firstResult.identifier.contains("burger") {
-                    self.navigationItem.title = "Burger"
-                } else if firstResult.identifier.contains("ice cream") {
-                    self.navigationItem.title = "Ice cream"
-                } else if firstResult.identifier.contains("hotpot") {
-                    self.navigationItem.title = "Hot pot"
-                } else if firstResult.identifier.contains("pizza") {
-                    self.navigationItem.title = "Pizza"
-                } else if firstResult.identifier.contains("dark glasses"){
-                    self.navigationItem.title = "Not Hotdog! Wait...Thug Hotdog!"
+                guard let Observation = results.first else {
+                    fatalError("try more you cam nail it!")
                 }
-                else {
-                    guard let Observation = results.first else {
-                        fatalError("can't extract results from model!")
-                    }
-                    self.navigationItem.title = "I'm not sure but it maybe \(Observation.identifier)"
-                }
+                // relace"_" in food name with " " to make user comfortable woc wo tai ta ma li hai le
+                let nameOfFood = Observation.identifier.replacingOccurrences(of: "_", with: " ")
+                print(firstResult)
+                self.navigationItem.title = "\(nameOfFood)"
+                
+                // collect results in UITexView
+                self.foodRecordString = self.foodRecordString + "  [\(nameOfFood)]"
+                self.foodRecord.text = self.foodRecordString
+                //}
             }
+            print(results)
             
         }
         
