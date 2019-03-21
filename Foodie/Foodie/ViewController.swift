@@ -3,7 +3,7 @@
 //  Foodie
 //
 //  Created by UCLA Pied Piper on 3/21/19.
-//  Copyright © 2019 CLA Pied Piper. All rights reserved.
+//  Copyright © 2019 UCLA Pied Piper. All rights reserved.
 //
 
 import UIKit
