@@ -351,7 +351,7 @@ For the same 500 epoch generated image our 512x512 resolution is:
 
 Although not a 1 to 1 comparison, for the sake of presentation we now examine the highest possible quality (using our limited GPU processing power) on a different image at 512x512 resolution. Our content image uses the famous painter Albert Biertstadt's painting of the Rocky Mountains: 
 
-![](~/biostatm280-winter2019-hw4/AlbertBierstadt.jpg)
+![](~/biostatm280-winter2019-hw4/Q1/AlbertBierstadt.jpg)
 
 We transform the original picture with Van Gogh's Starry night as the style:
 
