@@ -23,7 +23,7 @@ I found the [TensorFlow for R Blog](https://blogs.rstudio.com/tensorflow/) serie
 
 1. Reproduce the results in the blog.  
 
-``` Solution ```
+### Solution ###
   
 Our group searched through the R blog's website for an interesting project to undertake. After combing through several blogs, our group settled on the Neural style transfer with eager execution and Keras'(https://blogs.rstudio.com/tensorflow/posts/2018-09-10-eager-style-transfer/). The code uses neural style transfer techniques to transmute an original picture into the 'style' of a second picture. The model that the blog utilizes is a simplied version of model `VGG19`, which is a trained model on `ImageNet`. The blog modifies the `VGG19` model by computing `loss function` and back propagating it to get the direction of changes that we want. Specific explanations of the model functionality will be provided later in each step. In order to run the the code properly, we modified the original code on the blog since the original code contained errors. We added comments into the code section to explain each section of the code:
 
@@ -254,6 +254,7 @@ compute_grads <-
 ```
 
 Below, the style and content features are calculated just once, but are then iterated over epochs. An output is created every 100 epochs until 500 epochs is reached. 
+
 ```{r}
 #run the model/training phase
 run_style_transfer <- function(content_path, style_path) {
@@ -336,74 +337,37 @@ c(best_image, best_loss) %<-% run_style_transfer(content_path, style_path)
 
 We'll now explore three types of analyses by resolution, epochs, and style changes.
 
-`` Resolution: ``
+### Resolution: ###
 
 We've already seen the original construction of the final transmuted image using a 128x128 resolution. The final image quality was quite poor, making important stylistic features unable to discern. 
 
 For the same 500 epoch generated image our 128x128 resolution is:
 
-```{r}
-path1 <-"~/biostatm280-winter2019-hw4/Q1/originalRendition/style_epoch_500.png"
-
-content_image <-  image_load(path1, target_size = img_shape[1:2])
-content_image %>% 
-  image_to_array() %>%
-  `/`(., 255) %>%
-  as.raster() %>%
-  plot()
-```
+![](~/biostatm280-winter2019-hw4/Q1/originalRendition/style_epoch_500.png)
 
 For the same 500 epoch generated image our 512x512 resolution is:
 
-```{r}
-path1 <-"~/biostatm280-winter2019-hw4/Q1/originalRendition/style_epoch_500.png"
-
-content_image <-  image_load(path1, target_size = img_shape[1:2])
-content_image %>% 
-  image_to_array() %>%
-  `/`(., 255) %>%
-  as.raster() %>%
-  plot()
-```
+![](~/biostatm280-winter2019-hw4/Q1/originalRendition/style_epoch_500.png)
 
 Although not a 1 to 1 comparison, for the sake of presentation we now examine the highest possible quality (using our limited GPU processing power) on a different image at 512x512 resolution. Our content image uses the famous painter Albert Biertstadt's painting of the Rocky Mountains: 
 
-```{r}
-path1 <-"~/biostatm280-winter2019-hw4/AlbertBierstadt.jpg"
-
-content_image <-  image_load(path1, target_size = img_shape[1:2])
-content_image %>% 
-  image_to_array() %>%
-  `/`(., 255) %>%
-  as.raster() %>%
-  plot()
-```
+![](~/biostatm280-winter2019-hw4/AlbertBierstadt.jpg)
 
 We transform the original picture with Van Gogh's Starry night as the style:
 
-```{r}
-path1 <-"~/biostatm280-winter2019-hw4/albert_epoch_500.png"
+![](~/biostatm280-winter2019-hw4/albert_epoch_500.png)
 
-content_image <-  image_load(path1, target_size = img_shape[1:2])
-content_image %>% 
-  image_to_array() %>%
-  `/`(., 255) %>%
-  as.raster() %>%
-  plot()
-```
-
-`` Epoch ``
+### Epoch ###
 
 Comparisons can also be made on the output images based on the same base and style images, but with different epochs. Here we'll show a `GIF` that puts together a set of output images from 100, 200, 300, 400, and 500 epochs respectively. The gif starts with images generated from 100 epochs, whose base hue is darker in general and contents not as clear as the original pictures. As the epoch increases, images tend to have a base hue closer to the style image and the contents more substantial. 
 
 ![](~/biostatm280-winter2019-hw4/output_FDmUpr.gif)
 
+### Style ###
 
+Five different styles were compiled at 256x256 resolution. We chose five distinctive styles so that the styles can readily be seen. We can see the texture differences particularly evident in the sketch style, where the black lines ripple across the Yosemite sky. The original content image of Chinese ink style is drawn in shades of grey, which results in the more muted color scales of the transformed picture. If we compare Monet's and Van Gogh's styles, we can even see the particular differences in brush stroke styles, color compositions, and textures. If Van Gogh and Monet were to draw Yosemite, I'm confident they'd both admire each other's work. 
 
-
-`` Style ``
-
-
+![](~/biostatm280-winter2019-hw4/transformed.png)
 
 
 ## Q2 Deep learning on smart phone
