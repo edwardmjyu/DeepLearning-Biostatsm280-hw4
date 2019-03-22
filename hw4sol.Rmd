@@ -344,19 +344,21 @@ For the same 500 epoch generated image our 512x512 resolution is:
 
 Although not a 1 to 1 comparison, for the sake of presentation we now examine the highest possible quality (using our limited GPU processing power) on a different image at 512x512 resolution. Our content image uses the famous painter Albert Biertstadt's painting of the Rocky Mountains: 
 
-![](~/biostatm280-winter2019-hw4/Q1/AlbertBierstadt.jpg)
+![](~/biostatm280-winter2019-hw4/Q1/albert/AlbertBierstadt.jpg)
 
 We transform the original picture with Van Gogh's Starry night as the style:
 
-![](~/biostatm280-winter2019-hw4/Q1/albert_epoch_500.png)
+![](~/biostatm280-winter2019-hw4/Q1/albert/albert_epoch_500.png)
 
 ### Epoch ###
 
 Comparisons can also be made on the output images based on the same base and style images, but with different epochs. Here we'll show a `GIF` that puts together a set of output images from 100, 200, 300, 400, and 500 epochs respectively. The gif starts with images generated from 100 epochs, whose base hue is darker in general and contents not as clear as the original pictures. As the epoch increases, images tend to have a base hue closer to the style image and the contents more substantial. 
 
-![](~/biostatm280-winter2019-hw4/Q1/output_FDmUpr.gif)
+![](~/biostatm280-winter2019-hw4/Q1/albert/output_FDmUpr.gif)
 
 ### Style ###
+
+![](~/biostatm280-winter2019-hw4/Q1/japanesestyles/mountains.png)
 
 Five different styles were compiled at 256x256 resolution. We chose five distinctive styles so that the styles can readily be seen. We can see the texture differences particularly evident in the sketch style, where the black lines ripple across the Yosemite sky. The original content image of Chinese ink style is drawn in shades of grey, which results in the more muted color scales of the transformed picture. If we compare Monet's and Van Gogh's styles, we can even see the particular differences in brush stroke styles, color compositions, and textures. If Van Gogh and Monet were to draw Yosemite, I'm confident they'd both admire each other's work. 
 
