@@ -347,7 +347,7 @@ content_image %>%
   plot()
 ```
 
-For the same 500 epoch generated image our 256x256 resolution is:
+For the same 500 epoch generated image our 512x512 resolution is:
 ```{r}
 path1 <-"~/biostatm280-winter2019-hw4/Q1/originalRendition/style_epoch_500.png"
 
@@ -382,6 +382,16 @@ content_image %>%
   as.raster() %>%
   plot()
 ```
+
+** Epoch **
+
+
+
+** Style **
+
+
+
+
 ## Q2 Deep learning on smart phone
 
 Professor May Wang in Department of Community Health Sciences (CHS) studies obesity in children and intervention strategies to prevent obesity. She asked me whether it is possible to develop an app such that a user takes a photo of a meal and the app will recognize and record the type of food (pizza, mac and cheese, burger, ...). 
