@@ -351,13 +351,13 @@ Although not a 1 to 1 comparison, for the sake of presentation we now examine th
 We transform the original picture with Van Gogh's Starry night as the style:
 
 The starry night photo is shown below:
+
 ![](~/biostatm280-winter2019-hw4/Q1/vangogh/starrynight.png)
 
 The final transformed image looks like:
-![](~/biostatm280-winter2019-hw4/Q1/albert/albert_epoch_500.png)
-
 
 ![](~/biostatm280-winter2019-hw4/Q1/albert/albert_epoch_500.png)
+
 
 ### Epoch ###
 
