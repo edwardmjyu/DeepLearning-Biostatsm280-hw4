@@ -358,6 +358,7 @@ Comparisons can also be made on the output images based on the same base and sty
 
 ### Style ###
 
+The original content picture we used is a picture of Yosemite: 
 ![](~/biostatm280-winter2019-hw4/Q1/japanesestyles/mountains.png)
 
 Five different styles were compiled at 256x256 resolution. We chose five distinctive styles so that the styles can readily be seen. We can see the texture differences particularly evident in the sketch style, where the black lines ripple across the Yosemite sky. The original content image of Chinese ink style is drawn in shades of grey, which results in the more muted color scales of the transformed picture. If we compare Monet's and Van Gogh's styles, we can even see the particular differences in brush stroke styles, color compositions, and textures. If Van Gogh and Monet were to draw Yosemite, I'm confident they'd both admire each other's work. 
