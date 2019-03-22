@@ -1,8 +1,10 @@
 ---
 title: "Biostat M280 Homework 4"
+author: "Yun Han, Juehao Hu, Diyang Wu, Edward Yu, Xinrui Zhang"
 subtitle: Due Mar 22 @ 11:59PM
-author: Yun Han, Juehao Hu, Diyang Wu, Edward Yu, Xinrui Zhang
-output: html_document
+output:
+  html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -17,24 +19,11 @@ I found the [TensorFlow for R Blog](https://blogs.rstudio.com/tensorflow/) serie
 
 1. Reproduce the results in the blog.  
 
-<<<<<<< HEAD
 ``` Solution ```
   
 Our group searched through the R blog's website for an interesting project to undertake. After combing through several blogs, our group settled on the Neural style transfer with eager execution and Keras'(https://blogs.rstudio.com/tensorflow/posts/2018-09-10-eager-style-transfer/). The code uses neural style transfer techniques to transmute an original picture into the 'stye' of a second picture. The model that the blog utilizes is a simplied version of model `VGG19`, which is a trained model on `ImageNet`. The blog modifies the `VGG19` model by computing `loss function` and back propagating it to get the direction of changes that we want. Specific explanations of the model functionality will be provided later in each step. In order to run the the code properly, we modified the original code on the blog since the original code contained errors. We added comments into the code section to explain each section of the code:
-=======
-  ```Solution ```
-  
-For this problem, we found the model that interests us the most which can be accessed here(https://blogs.rstudio.com/tensorflow/posts/2018-09-10-eager-style-transfer/). Essentially the model is consisted of takes input of two images, which are base image and style image respectively, and output one base image with style transfer associated with the style image. The model that the blog utilizes is a simplied version of model `VGG19`, which is a trained model on `ImageNet`. The blog modifies the `VGG19` model by computing `loss function` and back propagating it to get the direction of changes that we want. Specific explannations of the model functionality will be provided later in each step. 
 
-```{r eval=FALSE}
-
->>>>>>> ce1c6413ea89456733d714336963491b566cb28f
-#install.packages("devtools")
-library("devtools")
-#devtools::install_github("rstudio/tensorflow")
->>>>>>> 3a93353d1647a1f04288fc3e687df8875168b2a7
-
-```{r eval=FALSE}
+```{r eval=FALSE, results = "hidden"}
 #installing necessary packages
 install.packages(c("tensorflow", "keras", "tfdatasets"))
 
@@ -43,18 +32,25 @@ library(tfdatasets)
 library(keras)
 library(purrr)
 library(glue)
+library(reticulate)
 use_implementation("tensorflow")
 tfe_enable_eager_execution(device_policy = "silent")
+```
 
-#install.packages("reticulate")
-library(reticulate)
-#use_virtualenv("r-reticulate")
-#py_available(TRUE)
-
-#Prepare data
+The `img_shape` determines the resolution dimensions of `content_image` and `style_image`. The original blog post uses resolution 128x128. Here we consider resolution as one of our tuning parameters. We will compare and contrast different resolution qualities and its effect on the final trasmuted image. 
+```{r}
 img_shape <- c(256, 256, 3)
+```
 
-content_path <-"~/Q1/originalRendition/GreatWave/isar.jpg"
+We load the original content image:
+```{r}
+library(tensorflow)
+library(tfdatasets)
+library(keras)
+library(purrr)
+library(glue)
+library(reticulate)
+content_path <-"~/biostatm280-winter2019-hw4/Q1/originalRendition/GreatWave/isar.jpg"
 
 content_image <-  image_load(content_path, target_size = img_shape[1:2])
 content_image %>% 
@@ -62,8 +58,11 @@ content_image %>%
   `/`(., 255) %>%
   as.raster() %>%
   plot()
+```
 
-style_path <- "~/Q1/originalRendition/GreatWave/The_Great_Wave_off_Kanagawa.jpg"
+Now we load the style image:
+```{r}
+style_path <- "~/biostatm280-winter2019-hw4/Q1/originalRendition/GreatWave/The_Great_Wave_off_Kanagawa.jpg"
 
 style_image <-  image_load(style_path, target_size = img_shape[1:2])
 style_image %>% 
@@ -71,8 +70,10 @@ style_image %>%
   `/`(., 255) %>%
   as.raster() %>%
   plot()
+```
 
-
+Create the wrapper that loads and preprocesses the input images. The model that we employ here is `VGG19`, a network that has been trained on `ImageNet`. 
+```{r eval=FALSE}
 #create a wrapper
 load_and_process_image <- function(path) {
   img <- image_load(path, target_size = img_shape[1:2]) %>%
@@ -94,7 +95,10 @@ deprocess_image <- function(x) {
   x[] <- as.integer(x) / 255
   x
 }
+```
 
+Now we explore the layers of the neural network. Within this model, there is no training, but a neural style transfer back propagates the loss to the input layer to get closer to our desired style image. There are two primary layers content and style. The content layer is compared to the style layer via loss function. There are 5 style layers are analagous to level features such as texture, shapes, strokes, etc:
+```{r eval=FALSE}
 #setting the scene
 content_layers <- c("block5_conv2")
 style_layers <- c("block1_conv1",
@@ -114,7 +118,10 @@ get_model <- function() {
   model_outputs <- c(style_outputs, content_outputs)
   keras_model(vgg$input, model_outputs)
 }
+```
 
+This model controls for three types of losses: content, style, and regularization loss.
+```{r eval = FALSE}
 #define losses
 content_loss <- function(content_image, target) {
   k_sum(k_square(target - content_image))
@@ -144,7 +151,10 @@ total_variation_loss <- function(image) {
 content_weight <- 100
 style_weight <- 0.8
 total_variation_weight <- 0.01
+```
 
+Here we get the model outputs for content and style images: 
+```{r}
 #get model output for content and style 
 get_feature_representations <-
   function(model, content_path, style_path) {
@@ -172,8 +182,10 @@ get_feature_representations <-
     
     list(style_features, content_features)
   }
+```
 
-
+Here we compute the losses for every loss type and gradient for the overall loss with respect to the initial image input:
+```{r}
 #compute loss
 compute_loss <-
   function(model, loss_weights, init_image, gram_style_features, content_features) {
@@ -221,7 +233,6 @@ compute_loss <-
     list(loss, style_score, content_score, variation_score)
   }
 
-
 #compute gradients
 compute_grads <- 
   function(model, loss_weights, init_image, gram_style_features, content_features) {
@@ -236,7 +247,10 @@ compute_grads <-
     total_loss <- scores[[1]]
     list(tape$gradient(total_loss, init_image), scores)
   }
+```
 
+Below, the style and content features are calculated just once, but are then iterated over epochs. An output is created every 100 epochs until 500 epochs is reached. 
+```{r}
 #run the model/training phase
 run_style_transfer <- function(content_path, style_path) {
   model <- get_model()
@@ -307,17 +321,67 @@ run_style_transfer <- function(content_path, style_path) {
   glue("Total time: {Sys.time() - global_start} seconds") %>% print()
   list(best_image, best_loss)
   }
+```
 
+Now we execute the entire process!
+```{r eval = FALSE}
 c(best_image, best_loss) %<-% run_style_transfer(content_path, style_path)
-
-
 ```
 
 2. Make your own tweaks. For example, try different tuning parameter values and report what you found, or try a new data set, or apply the method to a new application.
 
-** Report: **
-After reproducingg the exIn this part, everyone looked through all the blogs in the link, and we picked one which attracted all of us -- "Neural style transfer with eager execution and Keras". Edward Yu, Charles Hu and Diyang Wu modified the original model in the blog, by debugging some error in the code to make it run. Then, our group interpreted the full model together and decided which parameter can be tuned to make the result looks better, we finally took up Yun Han and Xin Rui Zhang's idea by tunning the parameter values in shape of image.
+We'll now explore three types of analyses by resolution, epochs, and style changes.
 
+** Resolution: ** 
+We've already seen the original construction of the final transmuted image using a 128x128 resolution. The final image quality was quite poor, making important stylistic features unable to discern. 
+
+For the same 500 epoch generated image our 128x128 resolution is:
+```{r}
+path1 <-"~/biostatm280-winter2019-hw4/Q1/originalRendition/style_epoch_500.png"
+
+content_image <-  image_load(path1, target_size = img_shape[1:2])
+content_image %>% 
+  image_to_array() %>%
+  `/`(., 255) %>%
+  as.raster() %>%
+  plot()
+```
+
+For the same 500 epoch generated image our 256x256 resolution is:
+```{r}
+path1 <-"~/biostatm280-winter2019-hw4/Q1/originalRendition/style_epoch_500.png"
+
+content_image <-  image_load(path1, target_size = img_shape[1:2])
+content_image %>% 
+  image_to_array() %>%
+  `/`(., 255) %>%
+  as.raster() %>%
+  plot()
+```
+
+Although not a 1 to 1 comparison, for the sake of presentation we now examine the highest possible quality (using our limited GPU processing power) on a different image at 512x512 resolution. Our content image uses the famous painter Albert Biertstadt's painting of the Rocky Mountains: 
+
+```{r}
+path1 <-"~/biostatm280-winter2019-hw4/AlbertBierstadt.jpg"
+
+content_image <-  image_load(path1, target_size = img_shape[1:2])
+content_image %>% 
+  image_to_array() %>%
+  `/`(., 255) %>%
+  as.raster() %>%
+  plot()
+```
+We transform the original picture with Van Gogh's Starry night as the style:
+```{r}
+path1 <-"~/biostatm280-winter2019-hw4/albert_epoch_500.png"
+
+content_image <-  image_load(path1, target_size = img_shape[1:2])
+content_image %>% 
+  image_to_array() %>%
+  `/`(., 255) %>%
+  as.raster() %>%
+  plot()
+```
 ## Q2 Deep learning on smart phone
 
 Professor May Wang in Department of Community Health Sciences (CHS) studies obesity in children and intervention strategies to prevent obesity. She asked me whether it is possible to develop an app such that a user takes a photo of a meal and the app will recognize and record the type of food (pizza, mac and cheese, burger, ...). 
@@ -328,3 +392,34 @@ Resources:
 1. There are plenty of tutorials and YouTube clips on making apps for iPhone or Android.  
 2. Google's [Cloud Vision API](https://cloud.google.com/vision/) may supply an easy cloud solution.  
 3. [TensorFlow Lite](https://www.tensorflow.org/lite) may provide an easy mobile solution.  
+
+```Solution```
+
+## App Description
+This App allows users to detect 101 types of foods. Every result will be recoded so that the users can see what their children ate during the whole day.
+From the demo vedio, you can see sigle result for a food is shown at the top area, and all results will be recorded right below the picture.
+
+## App Handbook
+### Required Environment
+To smoothly run the App, `MacOS Mojave` (i.e `10.14` and above), and `Xcode 10` are required.
+### Steps to Run
+Open the `Foodie.xcodeproj` click run to launch the simulator, after that, you can directly drag some pictures from the folder `testing picture` and have a try :).
+
+## Reference
+
+We tried to find some reference from the Internet and found a fancy online course here(https://www.udemy.com/ios-12-app-development-bootcamp/learn/v4/overview) giving instruction about how to develop a ios App by Xcode. 
+
+## Story
+1. Yun Han first construct a structure for the App.
+
+2. Xinrui Zhang refined the structure, and then merge a trianed coreML model `InceptionV3` in to achieve the photo recognition.
+
+3. Edward Yu optimized the user interface to make sure the selected images are not going to be twisted and looks good on screen of any size.
+
+4. Diyang Wu then found a new coreML model `Food101` and merge that model in, now the model can detect 101 types of food.
+
+5. The output for this new model is not good, for example, "French Fries" is presented as "French_Fries", Juehao Hu fixed this problem.
+
+6. Yun Han desing a new interface with a `record` part and Xinrui Zhang write code to achieve it.
+
+
