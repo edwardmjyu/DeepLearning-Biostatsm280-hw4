@@ -392,3 +392,34 @@ Resources:
 1. There are plenty of tutorials and YouTube clips on making apps for iPhone or Android.  
 2. Google's [Cloud Vision API](https://cloud.google.com/vision/) may supply an easy cloud solution.  
 3. [TensorFlow Lite](https://www.tensorflow.org/lite) may provide an easy mobile solution.  
+
+```Solution```
+
+## App Description
+This App allows users to detect 101 types of foods. Every result will be recoded so that the users can see what their children ate during the whole day.
+From the demo vedio, you can see sigle result for a food is shown at the top area, and all results will be recorded right below the picture.
+
+## App Handbook
+### Required Environment
+To smoothly run the App, `MacOS Mojave` (i.e `10.14` and above), and `Xcode 10` are required.
+### Steps to Run
+Open the `Foodie.xcodeproj` click run to launch the simulator, after that, you can directly drag some pictures from the folder `testing picture` and have a try :).
+
+## Reference
+
+We tried to find some reference from the Internet and found a fancy online course here(https://www.udemy.com/ios-12-app-development-bootcamp/learn/v4/overview) giving instruction about how to develop a ios App by Xcode. 
+
+## Story
+1. Yun Han first construct a structure for the App.
+
+2. Xinrui Zhang refined the structure, and then merge a trianed coreML model `InceptionV3` in to achieve the photo recognition.
+
+3. Edward Yu optimized the user interface to make sure the selected images are not going to be twisted and looks good on screen of any size.
+
+4. Diyang Wu then found a new coreML model `Food101` and merge that model in, now the model can detect 101 types of food.
+
+5. The output for this new model is not good, for example, "French Fries" is presented as "French_Fries", Juehao Hu fixed this problem.
+
+6. Yun Han desing a new interface with a `record` part and Xinrui Zhang write code to achieve it.
+
+

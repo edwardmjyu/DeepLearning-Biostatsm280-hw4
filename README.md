@@ -4,7 +4,7 @@
 **Here is a prototype for question 2**.
 
 
-![demo](Foodie Demo.mov)
+![Output sample](https://github.com/dw6ja/biostatm280-winter2019-hw4/blob/develop/Foodie%20Demo.gif)
 
 
 

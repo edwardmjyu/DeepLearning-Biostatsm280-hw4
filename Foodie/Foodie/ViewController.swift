@@ -1,30 +1,27 @@
 //
 //  ViewController.swift
-//  SeaFood
+//  Foodie
 //
-//  Created by 张唯维 on 3/17/19.
-//  Copyright © 2019 张唯维. All rights reserved.
+//  Created by UCLA Pied Piper on 3/21/19.
+//  Copyright © 2019 UCLA Pied Piper. All rights reserved.
 //
 
 import UIKit
 import CoreML
 import Vision
 
-
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    
-    @IBOutlet weak var foodRecord: UITextView!
-    var foodRecordString = "Record: "
-    
+
     @IBOutlet weak var imageView: UIImageView!
     
     let imagePicker = UIImagePickerController()
     
+    @IBOutlet weak var foodRecord: UITextView!
+    var foodRecordString = "Record: "
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
         imagePicker.delegate = self //i.e this current view control
         imagePicker.sourceType = .photoLibrary
         imagePicker.allowsEditing = false
@@ -57,10 +54,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             }
             
             if let firstResult = results.first {
-<<<<<<< HEAD
 
-=======
->>>>>>> 7ab2f9db11bc49d1a7ca93933ae4b3834f115396
                 guard let Observation = results.first else {
                     fatalError("try more you cam nail it!")
                 }
@@ -70,12 +64,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 self.navigationItem.title = "\(nameOfFood)"
                 
                 // collect results in UITexView
-<<<<<<< HEAD
-  
-=======
                 self.foodRecordString = self.foodRecordString + "  [\(nameOfFood)]"
                 self.foodRecord.text = self.foodRecordString
->>>>>>> 7ab2f9db11bc49d1a7ca93933ae4b3834f115396
                 //}
             }
             print(results)
@@ -92,14 +82,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
         
     }
-    
-    
-    
+
+
     @IBAction func cameraTapped(_ sender: UIBarButtonItem) {
-        
+    
         present(imagePicker, animated: true, completion: nil)
     }
 }
-
-
 
