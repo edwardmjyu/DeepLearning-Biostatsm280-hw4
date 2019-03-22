@@ -14,16 +14,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 
-
-For this homework, you can work as a team of size $\le 5$. You can create a new private GitHub repository for collaboration (need to add @Hua-Zhou and @juhkim111 as collaborators) or re-use the current repository of a team representative. For each question, your report should have a clear description of role of each team member, and Git log should reflect individual contribution to the project.
-
 ## Q1 Learn by doing
 
-I found the [TensorFlow for R Blog](https://blogs.rstudio.com/tensorflow/) series at RStudio quite illuminating. Choose one blog that interests you and do following.  
 
-1. Reproduce the results in the blog.  
-
-### Solution ###
+### Q1.1 Reproduce the results in the blog  
   
 Our group searched through the R blog's website for an interesting project to undertake. After combing through several blogs, our group settled on the Neural style transfer with eager execution and Keras'(https://blogs.rstudio.com/tensorflow/posts/2018-09-10-eager-style-transfer/). The code uses neural style transfer techniques to transmute an original picture into the 'style' of a second picture. The model that the blog utilizes is a simplied version of model `VGG19`, which is a trained model on `ImageNet`. The blog modifies the `VGG19` model by computing `loss function` and back propagating it to get the direction of changes that we want. Specific explanations of the model functionality will be provided later in each step. In order to run the the code properly, we modified the original code on the blog since the original code contained errors. We added comments into the code section to explain each section of the code:
 
@@ -333,11 +327,10 @@ Now we execute the entire process!
 c(best_image, best_loss) %<-% run_style_transfer(content_path, style_path)
 ```
 
-2. Make your own tweaks. For example, try different tuning parameter values and report what you found, or try a new data set, or apply the method to a new application.
+
+### Q1.2 Make our own tweaks. 
 
 We'll now explore three types of analyses by resolution, epochs, and style changes.
-
-### Resolution: ###
 
 We've already seen the original construction of the final transmuted image using a 128x128 resolution. The final image quality was quite poor, making important stylistic features unable to discern. 
 
@@ -367,37 +360,46 @@ Comparisons can also be made on the output images based on the same base and sty
 
 Five different styles were compiled at 256x256 resolution. We chose five distinctive styles so that the styles can readily be seen. We can see the texture differences particularly evident in the sketch style, where the black lines ripple across the Yosemite sky. The original content image of Chinese ink style is drawn in shades of grey, which results in the more muted color scales of the transformed picture. If we compare Monet's and Van Gogh's styles, we can even see the particular differences in brush stroke styles, color compositions, and textures. If Van Gogh and Monet were to draw Yosemite, I'm confident they'd both admire each other's work. 
 
-![](~/biostatm280-winter2019-hw4/transformed.png)
+![](~/biostatm280-winter2019-hw4/Q1/transformed.png)
 
+### Work distribution
+
+1. Yun Han and Xinrui Zhang performed the majority of the blog reviews to select which blog would be interesting to reproduce. The rest of the group agreed on the blog choice. 
+
+2. Edward Yu, Diyang Wu, and Juehao Hu compiled the code from the blog. After recognizing that the code directly pulled form the blog did not run properly, we fixed bugs and added initial parameter values such as setting an `num_iterations` value. 
+
+3. Yun Han and Xinrui Zhang began the writing process for the reproduction section, helping to add comments to the code. 
+
+4. Juehao Hu performed the analysis of resolution section, showing the difference between 128x128 resolution and 512x512 resolution.
+
+5. Diyang Wu performed the epoch section, incorporating a unique way to show the changes in epoch by compiling 5 images into a gif format. 
+
+6. Edward Yu performed the style section and created the transformed final image, laying out an easy way to compare how each style image creates its own version of the Yosemite picture. He also helped write the rmarkdown file. Other members contributed to selecting the style photos and uploading the photos into Github. 
+
+7. Yun Han summarized our final findings from Q1 and Q2 into the readme, highlighting the group's hard work!
 
 ## Q2 Deep learning on smart phone
 
-Professor May Wang in Department of Community Health Sciences (CHS) studies obesity in children and intervention strategies to prevent obesity. She asked me whether it is possible to develop an app such that a user takes a photo of a meal and the app will recognize and record the type of food (pizza, mac and cheese, burger, ...). 
+### App Description
+This App allows users to detect 101 types of foods. Every result will be recorded so that the users can see what their children ate for the whole day.
+From the demo video, you can see a single result for food is shown at the top area, and all results will be recorded right below the picture.
 
-Your job: produce a prototype app for iPhone or Android smart phone. 
+### App Handbook
 
-Resources:  
-1. There are plenty of tutorials and YouTube clips on making apps for iPhone or Android.  
-2. Google's [Cloud Vision API](https://cloud.google.com/vision/) may supply an easy cloud solution.  
-3. [TensorFlow Lite](https://www.tensorflow.org/lite) may provide an easy mobile solution.  
+**Required Environment**
 
-```Solution```
-
-## App Description
-This App allows users to detect 101 types of foods. Every result will be recoded so that the users can see what their children ate during the whole day.
-From the demo vedio, you can see sigle result for a food is shown at the top area, and all results will be recorded right below the picture.
-
-## App Handbook
-### Required Environment
 To smoothly run the App, `MacOS Mojave` (i.e `10.14` and above), and `Xcode 10` are required.
-### Steps to Run
+
+**Steps to Run**
+
 Open the `Foodie.xcodeproj` click run to launch the simulator, after that, you can directly drag some pictures from the folder `testing picture` and have a try :).
 
-## Reference
+**Reference**
 
-We tried to find some reference from the Internet and found a fancy online course here(https://www.udemy.com/ios-12-app-development-bootcamp/learn/v4/overview) giving instruction about how to develop a ios App by Xcode. 
+We tried to find some reference from the Internet and found an excellent online course here(https://www.udemy.com/ios-12-app-development-bootcamp/learn/v4/overview) instructing how to develop a ios App by Xcode. 
 
-## Story
+### Work distribution
+
 1. Yun Han first construct a structure for the App.
 
 2. Xinrui Zhang refined the structure, and then merge a trianed coreML model `InceptionV3` in to achieve the photo recognition.
@@ -409,5 +411,8 @@ We tried to find some reference from the Internet and found a fancy online cours
 5. The output for this new model is not good, for example, "French Fries" is presented as "French_Fries", Juehao Hu fixed this problem.
 
 6. Yun Han desing a new interface with a `record` part and Xinrui Zhang write code to achieve it.
+
+
+
 
 
