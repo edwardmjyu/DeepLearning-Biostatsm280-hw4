@@ -474,6 +474,9 @@ run_style_transfer &lt;- function(content_path, style_path) {
 <div id="q1.2-make-our-own-tweaks." class="section level3">
 <h3>Q1.2 Make our own tweaks.</h3>
 <p>We’ll now explore three types of analyses by resolution, epochs, and style changes.</p>
+</div>
+<div id="resolution" class="section level3">
+<h3>Resolution</h3>
 <p>We’ve already seen the original construction of the final transmuted image using a 128x128 resolution. The final image quality was quite poor, making important stylistic features unable to discern.</p>
 <p>For the same 500 epoch generated image our 128x128 resolution is:</p>
 <div class="figure">
@@ -491,6 +494,12 @@ run_style_transfer &lt;- function(content_path, style_path) {
 
 </div>
 <p>We transform the original picture with Van Gogh’s Starry night as the style:</p>
+<p>The starry night photo is shown below:</p>
+<div class="figure">
+<img src="Q1/vangogh/starrynight.png" />
+
+</div>
+<p>The final transformed image looks like:</p>
 <div class="figure">
 <img src="Q1/albert/albert_epoch_500.png" />
 

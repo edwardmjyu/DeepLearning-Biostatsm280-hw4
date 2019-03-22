@@ -332,6 +332,8 @@ c(best_image, best_loss) %<-% run_style_transfer(content_path, style_path)
 
 We'll now explore three types of analyses by resolution, epochs, and style changes.
 
+### Resolution ###
+
 We've already seen the original construction of the final transmuted image using a 128x128 resolution. The final image quality was quite poor, making important stylistic features unable to discern. 
 
 For the same 500 epoch generated image our 128x128 resolution is:
@@ -348,7 +350,14 @@ Although not a 1 to 1 comparison, for the sake of presentation we now examine th
 
 We transform the original picture with Van Gogh's Starry night as the style:
 
+The starry night photo is shown below:
+
+![](~/biostatm280-winter2019-hw4/Q1/vangogh/starrynight.png)
+
+The final transformed image looks like:
+
 ![](~/biostatm280-winter2019-hw4/Q1/albert/albert_epoch_500.png)
+
 
 ### Epoch ###
 
