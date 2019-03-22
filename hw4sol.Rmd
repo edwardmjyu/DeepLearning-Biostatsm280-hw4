@@ -329,6 +329,16 @@ Resources:
 
 ```Solution```
 
+## App Description
+This App allows users to detect 101 types of foods. Every result will be recoded so that the users can see what their children ate during the whole day.
+From the demo vedio, you can see sigle result for a food is shown at the top area, and all results will be recorded right below the picture.
+
+## App Handbook
+### Required Environment
+To smoothly run the App, `MacOS Mojave` (i.e `10.14` and above), and `Xcode 10` are required.
+### Steps to Run
+Open the `Foodie.xcodeproj` click run to launch the simulator, after that, you can directly drag some pictures from the folder `testing picture` and have a try :).
+
 ## Reference
 
 We tried to find some reference from the Internet and found a fancy online course here(https://www.udemy.com/ios-12-app-development-bootcamp/learn/v4/overview) giving instruction about how to develop a ios App by Xcode. 
@@ -346,6 +356,4 @@ We tried to find some reference from the Internet and found a fancy online cours
 
 6. Yun Han desing a new interface with a `record` part and Xinrui Zhang write code to achieve it.
 
-## App Description
-This App allows users to detect 101 types of foods. Every result will be recoded so that the users can see what their children ate during the whole day.
-From the demo vedio, you can see result for every food is shown at the top area, and recorded right below the picture.
+
