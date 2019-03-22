@@ -2,8 +2,8 @@
 //  ViewController.swift
 //  Foodie
 //
-//  Created by 张唯维 on 3/21/19.
-//  Copyright © 2019 张唯维. All rights reserved.
+//  Created by UCLA Pied Piper on 3/21/19.
+//  Copyright © 2019 UCLA Pied Piper. All rights reserved.
 //
 
 import UIKit

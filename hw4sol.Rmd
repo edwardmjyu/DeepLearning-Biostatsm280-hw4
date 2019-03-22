@@ -1,8 +1,10 @@
 ---
 title: "Biostat M280 Homework 4"
+author: "Yun Han, Juehao Hu, Diyang Wu, Edward Yu, Xinrui Zhang"
 subtitle: Due Mar 22 @ 11:59PM
-author: Yun Han, Juehao Hu, Diyang Wu, Edward Yu, Xinrui Zhang
-output: html_document
+output:
+  html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -42,6 +44,12 @@ img_shape <- c(256, 256, 3)
 
 We load the original content image:
 ```{r}
+library(tensorflow)
+library(tfdatasets)
+library(keras)
+library(purrr)
+library(glue)
+library(reticulate)
 content_path <-"~/biostatm280-winter2019-hw4/Q1/originalRendition/GreatWave/isar.jpg"
 
 content_image <-  image_load(content_path, target_size = img_shape[1:2])
@@ -112,6 +120,7 @@ get_model <- function() {
 }
 ```
 
+This model controls for three types of losses: content, style, and regularization loss.
 ```{r eval = FALSE}
 #define losses
 content_loss <- function(content_image, target) {
@@ -142,7 +151,10 @@ total_variation_loss <- function(image) {
 content_weight <- 100
 style_weight <- 0.8
 total_variation_weight <- 0.01
+```
 
+Here we get the model outputs for content and style images: 
+```{r}
 #get model output for content and style 
 get_feature_representations <-
   function(model, content_path, style_path) {
@@ -170,8 +182,10 @@ get_feature_representations <-
     
     list(style_features, content_features)
   }
+```
 
-
+Here we compute the losses for every loss type and gradient for the overall loss with respect to the initial image input:
+```{r}
 #compute loss
 compute_loss <-
   function(model, loss_weights, init_image, gram_style_features, content_features) {
@@ -219,7 +233,6 @@ compute_loss <-
     list(loss, style_score, content_score, variation_score)
   }
 
-
 #compute gradients
 compute_grads <- 
   function(model, loss_weights, init_image, gram_style_features, content_features) {
@@ -234,7 +247,10 @@ compute_grads <-
     total_loss <- scores[[1]]
     list(tape$gradient(total_loss, init_image), scores)
   }
+```
 
+Below, the style and content features are calculated just once, but are then iterated over epochs. An output is created every 100 epochs until 500 epochs is reached. 
+```{r}
 #run the model/training phase
 run_style_transfer <- function(content_path, style_path) {
   model <- get_model()
@@ -305,16 +321,76 @@ run_style_transfer <- function(content_path, style_path) {
   glue("Total time: {Sys.time() - global_start} seconds") %>% print()
   list(best_image, best_loss)
   }
+```
 
+Now we execute the entire process!
+```{r eval = FALSE}
 c(best_image, best_loss) %<-% run_style_transfer(content_path, style_path)
-
-
 ```
 
 2. Make your own tweaks. For example, try different tuning parameter values and report what you found, or try a new data set, or apply the method to a new application.
 
-** Report: **
-After reproducingg the exIn this part, everyone looked through all the blogs in the link, and we picked one which attracted all of us -- "Neural style transfer with eager execution and Keras". Edward Yu, Charles Hu and Diyang Wu modified the original model in the blog, by debugging some error in the code to make it run. Then, our group interpreted the full model together and decided which parameter can be tuned to make the result looks better, we finally took up Yun Han and Xin Rui Zhang's idea by tunning the parameter values in shape of image.
+We'll now explore three types of analyses by resolution, epochs, and style changes.
+
+** Resolution: ** 
+We've already seen the original construction of the final transmuted image using a 128x128 resolution. The final image quality was quite poor, making important stylistic features unable to discern. 
+
+For the same 500 epoch generated image our 128x128 resolution is:
+```{r}
+path1 <-"~/biostatm280-winter2019-hw4/Q1/originalRendition/style_epoch_500.png"
+
+content_image <-  image_load(path1, target_size = img_shape[1:2])
+content_image %>% 
+  image_to_array() %>%
+  `/`(., 255) %>%
+  as.raster() %>%
+  plot()
+```
+
+For the same 500 epoch generated image our 512x512 resolution is:
+```{r}
+path1 <-"~/biostatm280-winter2019-hw4/Q1/originalRendition/style_epoch_500.png"
+
+content_image <-  image_load(path1, target_size = img_shape[1:2])
+content_image %>% 
+  image_to_array() %>%
+  `/`(., 255) %>%
+  as.raster() %>%
+  plot()
+```
+
+Although not a 1 to 1 comparison, for the sake of presentation we now examine the highest possible quality (using our limited GPU processing power) on a different image at 512x512 resolution. Our content image uses the famous painter Albert Biertstadt's painting of the Rocky Mountains: 
+
+```{r}
+path1 <-"~/biostatm280-winter2019-hw4/AlbertBierstadt.jpg"
+
+content_image <-  image_load(path1, target_size = img_shape[1:2])
+content_image %>% 
+  image_to_array() %>%
+  `/`(., 255) %>%
+  as.raster() %>%
+  plot()
+```
+We transform the original picture with Van Gogh's Starry night as the style:
+```{r}
+path1 <-"~/biostatm280-winter2019-hw4/albert_epoch_500.png"
+
+content_image <-  image_load(path1, target_size = img_shape[1:2])
+content_image %>% 
+  image_to_array() %>%
+  `/`(., 255) %>%
+  as.raster() %>%
+  plot()
+```
+
+** Epoch **
+
+
+
+** Style **
+
+
+
 
 ## Q2 Deep learning on smart phone
 
@@ -328,6 +404,16 @@ Resources:
 3. [TensorFlow Lite](https://www.tensorflow.org/lite) may provide an easy mobile solution.  
 
 ```Solution```
+
+## App Description
+This App allows users to detect 101 types of foods. Every result will be recoded so that the users can see what their children ate during the whole day.
+From the demo vedio, you can see sigle result for a food is shown at the top area, and all results will be recorded right below the picture.
+
+## App Handbook
+### Required Environment
+To smoothly run the App, `MacOS Mojave` (i.e `10.14` and above), and `Xcode 10` are required.
+### Steps to Run
+Open the `Foodie.xcodeproj` click run to launch the simulator, after that, you can directly drag some pictures from the folder `testing picture` and have a try :).
 
 ## Reference
 
@@ -346,6 +432,4 @@ We tried to find some reference from the Internet and found a fancy online cours
 
 6. Yun Han desing a new interface with a `record` part and Xinrui Zhang write code to achieve it.
 
-## App Description
-This App allows users to detect 101 types of foods. Every result will be recoded so that the users can see what their children ate during the whole day.
-From the demo vedio, you can see result for every food is shown at the top area, and recorded right below the picture.
+
