@@ -191,15 +191,10 @@ $(document).ready(function () {
 </div>
 
 
-<p>For this homework, you can work as a team of size <span class="math inline">\(\le 5\)</span>. You can create a new private GitHub repository for collaboration (need to add <span class="citation">@Hua-Zhou</span> and <span class="citation">@juhkim111</span> as collaborators) or re-use the current repository of a team representative. For each question, your report should have a clear description of role of each team member, and Git log should reflect individual contribution to the project.</p>
 <div id="q1-learn-by-doing" class="section level2">
 <h2>Q1 Learn by doing</h2>
-<p>I found the <a href="https://blogs.rstudio.com/tensorflow/">TensorFlow for R Blog</a> series at RStudio quite illuminating. Choose one blog that interests you and do following.</p>
-<ol style="list-style-type: decimal">
-<li>Reproduce the results in the blog.</li>
-</ol>
-<div id="solution" class="section level3">
-<h3>Solution</h3>
+<div id="q1.1-reproduce-the-results-in-the-blog" class="section level3">
+<h3>Q1.1 Reproduce the results in the blog</h3>
 <p>Our group searched through the R blog’s website for an interesting project to undertake. After combing through several blogs, our group settled on the Neural style transfer with eager execution and Keras’(<a href="https://blogs.rstudio.com/tensorflow/posts/2018-09-10-eager-style-transfer/" class="uri">https://blogs.rstudio.com/tensorflow/posts/2018-09-10-eager-style-transfer/</a>). The code uses neural style transfer techniques to transmute an original picture into the ‘style’ of a second picture. The model that the blog utilizes is a simplied version of model <code>VGG19</code>, which is a trained model on <code>ImageNet</code>. The blog modifies the <code>VGG19</code> model by computing <code>loss function</code> and back propagating it to get the direction of changes that we want. Specific explanations of the model functionality will be provided later in each step. In order to run the the code properly, we modified the original code on the blog since the original code contained errors. We added comments into the code section to explain each section of the code:</p>
 <pre class="r"><code>#installing necessary packages
 install.packages(c(&quot;tensorflow&quot;, &quot;keras&quot;, &quot;tfdatasets&quot;))
@@ -229,7 +224,6 @@ content_image %&gt;%
   `/`(., 255) %&gt;%
   as.raster() %&gt;%
   plot()</code></pre>
-<p><img src="hw4sol_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>Now we load the style image:</p>
 <pre class="r"><code>style_path &lt;- &quot;~/biostatm280-winter2019-hw4/Q1/originalRendition/GreatWave/The_Great_Wave_off_Kanagawa.jpg&quot;
 
@@ -239,7 +233,6 @@ style_image %&gt;%
   `/`(., 255) %&gt;%
   as.raster() %&gt;%
   plot()</code></pre>
-<p><img src="hw4sol_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>Create the wrapper that loads and preprocesses the input images. The model that we employ here is <code>VGG19</code>, a network that has been trained on <code>ImageNet</code>.</p>
 <pre class="r"><code>#create a wrapper
 load_and_process_image &lt;- function(path) {
@@ -475,32 +468,29 @@ run_style_transfer &lt;- function(content_path, style_path) {
   }</code></pre>
 <p>Now we execute the entire process!</p>
 <pre class="r"><code>c(best_image, best_loss) %&lt;-% run_style_transfer(content_path, style_path)</code></pre>
-<ol start="2" style="list-style-type: decimal">
-<li>Make your own tweaks. For example, try different tuning parameter values and report what you found, or try a new data set, or apply the method to a new application.</li>
-</ol>
-<p>We’ll now explore three types of analyses by resolution, epochs, and style changes.</p>
 </div>
-<div id="resolution" class="section level3">
-<h3>Resolution:</h3>
+<div id="q1.2-make-our-own-tweaks." class="section level3">
+<h3>Q1.2 Make our own tweaks.</h3>
+<p>We’ll now explore three types of analyses by resolution, epochs, and style changes.</p>
 <p>We’ve already seen the original construction of the final transmuted image using a 128x128 resolution. The final image quality was quite poor, making important stylistic features unable to discern.</p>
 <p>For the same 500 epoch generated image our 128x128 resolution is:</p>
 <div class="figure">
-<img src="Q1/originalRendition/style_epoch_500.png" />
+<img src="~/biostatm280-winter2019-hw4/Q1/originalRendition/style_epoch_500.png" />
 
 </div>
 <p>For the same 500 epoch generated image our 512x512 resolution is:</p>
 <div class="figure">
-<img src="Q1/originalRendition/style_epoch_500.png" />
+<img src="~/biostatm280-winter2019-hw4/Q1/originalRendition/style_epoch_500.png" />
 
 </div>
 <p>Although not a 1 to 1 comparison, for the sake of presentation we now examine the highest possible quality (using our limited GPU processing power) on a different image at 512x512 resolution. Our content image uses the famous painter Albert Biertstadt’s painting of the Rocky Mountains:</p>
 <div class="figure">
-<img src="Q1/AlbertBierstadt.jpg" />
+<img src="~/biostatm280-winter2019-hw4/Q1/AlbertBierstadt.jpg" />
 
 </div>
 <p>We transform the original picture with Van Gogh’s Starry night as the style:</p>
 <div class="figure">
-<img src="albert_epoch_500.png" />
+<img src="~/biostatm280-winter2019-hw4/Q1/albert_epoch_500.png" />
 
 </div>
 </div>
@@ -508,7 +498,7 @@ run_style_transfer &lt;- function(content_path, style_path) {
 <h3>Epoch</h3>
 <p>Comparisons can also be made on the output images based on the same base and style images, but with different epochs. Here we’ll show a <code>GIF</code> that puts together a set of output images from 100, 200, 300, 400, and 500 epochs respectively. The gif starts with images generated from 100 epochs, whose base hue is darker in general and contents not as clear as the original pictures. As the epoch increases, images tend to have a base hue closer to the style image and the contents more substantial.</p>
 <div class="figure">
-<img src="output_FDmUpr.gif" />
+<img src="~/biostatm280-winter2019-hw4/Q1/output_FDmUpr.gif" />
 
 </div>
 </div>
@@ -516,38 +506,40 @@ run_style_transfer &lt;- function(content_path, style_path) {
 <h3>Style</h3>
 <p>Five different styles were compiled at 256x256 resolution. We chose five distinctive styles so that the styles can readily be seen. We can see the texture differences particularly evident in the sketch style, where the black lines ripple across the Yosemite sky. The original content image of Chinese ink style is drawn in shades of grey, which results in the more muted color scales of the transformed picture. If we compare Monet’s and Van Gogh’s styles, we can even see the particular differences in brush stroke styles, color compositions, and textures. If Van Gogh and Monet were to draw Yosemite, I’m confident they’d both admire each other’s work.</p>
 <div class="figure">
-<img src="~/biostatm280-winter2019-hw4/transformed.png" />
+<img src="~/biostatm280-winter2019-hw4/Q1/transformed.png" />
 
 </div>
+</div>
+<div id="work-distribution" class="section level3">
+<h3>Work distribution</h3>
+<ol style="list-style-type: decimal">
+<li><p>Yun Han and Xinrui Zhang performed the majority of the blog reviews to select which blog would be interesting to reproduce. The rest of the group agreed on the blog choice.</p></li>
+<li><p>Edward Yu, Diyang Wu, and Juehao Hu compiled the code from the blog. After recognizing that the code directly pulled form the blog did not run properly, we fixed bugs and added initial parameter values such as setting an <code>num_iterations</code> value.</p></li>
+<li><p>Yun Han and Xinrui Zhang began the writing process for the reproduction section, helping to add comments to the code.</p></li>
+<li><p>Juehao Hu performed the analysis of resolution section, showing the difference between 128x128 resolution and 512x512 resolution.</p></li>
+<li><p>Diyang Wu performed the epoch section, incorporating a unique way to show the changes in epoch by compiling 5 images into a gif format.</p></li>
+<li><p>Edward Yu performed the style section and created the transformed final image, laying out an easy way to compare how each style image creates its own version of the Yosemite picture. He also helped write the rmarkdown file. Other members contributed to selecting the style photos and uploading the photos into Github.</p></li>
+<li><p>Yun Han summarized our final findings from Q1 and Q2 into the readme, highlighting the group’s hard work!</p></li>
+</ol>
 </div>
 </div>
 <div id="q2-deep-learning-on-smart-phone" class="section level2">
 <h2>Q2 Deep learning on smart phone</h2>
-<p>Professor May Wang in Department of Community Health Sciences (CHS) studies obesity in children and intervention strategies to prevent obesity. She asked me whether it is possible to develop an app such that a user takes a photo of a meal and the app will recognize and record the type of food (pizza, mac and cheese, burger, …).</p>
-<p>Your job: produce a prototype app for iPhone or Android smart phone.</p>
-<p>Resources:<br />
-1. There are plenty of tutorials and YouTube clips on making apps for iPhone or Android.<br />
-2. Google’s <a href="https://cloud.google.com/vision/">Cloud Vision API</a> may supply an easy cloud solution.<br />
-3. <a href="https://www.tensorflow.org/lite">TensorFlow Lite</a> may provide an easy mobile solution.</p>
-<p><code>Solution</code></p>
+<div id="app-description" class="section level3">
+<h3>App Description</h3>
+<p>This App allows users to detect 101 types of foods. Every result will be recorded so that the users can see what their children ate for the whole day. From the demo video, you can see a single result for food is shown at the top area, and all results will be recorded right below the picture.</p>
 </div>
-<div id="app-description" class="section level2">
-<h2>App Description</h2>
-<p>This App allows users to detect 101 types of foods. Every result will be recoded so that the users can see what their children ate during the whole day. From the demo vedio, you can see sigle result for a food is shown at the top area, and all results will be recorded right below the picture.</p>
+<div id="app-handbook" class="section level3">
+<h3>App Handbook</h3>
+<p><strong>Required Environment</strong></p>
+<p>To smoothly run the App, <code>MacOS Mojave</code> (i.e <code>10.14</code> and above), and <code>Xcode 10</code> are required.</p>
+<p><strong>Steps to Run</strong></p>
+<p>Open the <code>Foodie.xcodeproj</code> click run to launch the simulator, after that, you can directly drag some pictures from the folder <code>testing picture</code> and have a try :).</p>
+<p><strong>Reference</strong></p>
+<p>We tried to find some reference from the Internet and found an excellent online course here(<a href="https://www.udemy.com/ios-12-app-development-bootcamp/learn/v4/overview" class="uri">https://www.udemy.com/ios-12-app-development-bootcamp/learn/v4/overview</a>) instructing how to develop a ios App by Xcode.</p>
 </div>
-<div id="app-handbook" class="section level2">
-<h2>App Handbook</h2>
-<div id="required-environment" class="section level3">
-<h3>Required Environment</h3>
-<p>To smoothly run the App, <code>MacOS Mojave</code> (i.e <code>10.14</code> and above), and <code>Xcode 10</code> are required. ### Steps to Run Open the <code>Foodie.xcodeproj</code> click run to launch the simulator, after that, you can directly drag some pictures from the folder <code>testing picture</code> and have a try :).</p>
-</div>
-</div>
-<div id="reference" class="section level2">
-<h2>Reference</h2>
-<p>We tried to find some reference from the Internet and found a fancy online course here(<a href="https://www.udemy.com/ios-12-app-development-bootcamp/learn/v4/overview" class="uri">https://www.udemy.com/ios-12-app-development-bootcamp/learn/v4/overview</a>) giving instruction about how to develop a ios App by Xcode.</p>
-</div>
-<div id="story" class="section level2">
-<h2>Story</h2>
+<div id="work-distribution-1" class="section level3">
+<h3>Work distribution</h3>
 <ol style="list-style-type: decimal">
 <li><p>Yun Han first construct a structure for the App.</p></li>
 <li><p>Xinrui Zhang refined the structure, and then merge a trianed coreML model <code>InceptionV3</code> in to achieve the photo recognition.</p></li>
@@ -556,6 +548,7 @@ run_style_transfer &lt;- function(content_path, style_path) {
 <li><p>The output for this new model is not good, for example, “French Fries” is presented as “French_Fries”, Juehao Hu fixed this problem.</p></li>
 <li><p>Yun Han desing a new interface with a <code>record</code> part and Xinrui Zhang write code to achieve it.</p></li>
 </ol>
+</div>
 </div>
 
 
