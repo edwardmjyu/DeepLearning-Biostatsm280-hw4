@@ -3,13 +3,17 @@ title: "Biostat M280 Homework 4"
 author: "Yun Han, Juehao Hu, Diyang Wu, Edward Yu, Xinrui Zhang"
 subtitle: Due Mar 22 @ 11:59PM
 output:
-  html_document: default
-  pdf_document: default
+  html_document:
+    self_contained: no
 ---
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+
+
 
 For this homework, you can work as a team of size $\le 5$. You can create a new private GitHub repository for collaboration (need to add @Hua-Zhou and @juhkim111 as collaborators) or re-use the current repository of a team representative. For each question, your report should have a clear description of role of each team member, and Git log should reflect individual contribution to the project.
 
@@ -21,7 +25,7 @@ I found the [TensorFlow for R Blog](https://blogs.rstudio.com/tensorflow/) serie
 
 ``` Solution ```
   
-Our group searched through the R blog's website for an interesting project to undertake. After combing through several blogs, our group settled on the Neural style transfer with eager execution and Keras'(https://blogs.rstudio.com/tensorflow/posts/2018-09-10-eager-style-transfer/). The code uses neural style transfer techniques to transmute an original picture into the 'stye' of a second picture. The model that the blog utilizes is a simplied version of model `VGG19`, which is a trained model on `ImageNet`. The blog modifies the `VGG19` model by computing `loss function` and back propagating it to get the direction of changes that we want. Specific explanations of the model functionality will be provided later in each step. In order to run the the code properly, we modified the original code on the blog since the original code contained errors. We added comments into the code section to explain each section of the code:
+Our group searched through the R blog's website for an interesting project to undertake. After combing through several blogs, our group settled on the Neural style transfer with eager execution and Keras'(https://blogs.rstudio.com/tensorflow/posts/2018-09-10-eager-style-transfer/). The code uses neural style transfer techniques to transmute an original picture into the 'style' of a second picture. The model that the blog utilizes is a simplied version of model `VGG19`, which is a trained model on `ImageNet`. The blog modifies the `VGG19` model by computing `loss function` and back propagating it to get the direction of changes that we want. Specific explanations of the model functionality will be provided later in each step. In order to run the the code properly, we modified the original code on the blog since the original code contained errors. We added comments into the code section to explain each section of the code:
 
 ```{r eval=FALSE, results = "hidden"}
 #installing necessary packages
@@ -332,10 +336,12 @@ c(best_image, best_loss) %<-% run_style_transfer(content_path, style_path)
 
 We'll now explore three types of analyses by resolution, epochs, and style changes.
 
-** Resolution: ** 
+`` Resolution: ``
+
 We've already seen the original construction of the final transmuted image using a 128x128 resolution. The final image quality was quite poor, making important stylistic features unable to discern. 
 
 For the same 500 epoch generated image our 128x128 resolution is:
+
 ```{r}
 path1 <-"~/biostatm280-winter2019-hw4/Q1/originalRendition/style_epoch_500.png"
 
@@ -348,6 +354,7 @@ content_image %>%
 ```
 
 For the same 500 epoch generated image our 512x512 resolution is:
+
 ```{r}
 path1 <-"~/biostatm280-winter2019-hw4/Q1/originalRendition/style_epoch_500.png"
 
@@ -371,7 +378,9 @@ content_image %>%
   as.raster() %>%
   plot()
 ```
+
 We transform the original picture with Van Gogh's Starry night as the style:
+
 ```{r}
 path1 <-"~/biostatm280-winter2019-hw4/albert_epoch_500.png"
 
@@ -383,11 +392,16 @@ content_image %>%
   plot()
 ```
 
-** Epoch **
+`` Epoch ``
+
+Comparisons can also be made on the output images based on the same base and style images, but with different epochs. Here we'll show a `GIF` that puts together a set of output images from 100, 200, 300, 400, and 500 epochs respectively. The gif starts with images generated from 100 epochs, whose base hue is darker in general and contents not as clear as the original pictures. As the epoch increases, images tend to have a base hue closer to the style image and the contents more substantial. 
+
+![](~/biostatm280-winter2019-hw4/output_FDmUpr.gif)
 
 
 
-** Style **
+
+`` Style ``
 
 
 
