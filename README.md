@@ -29,8 +29,8 @@ For question 2, we develop an app "Foodie" such that a user takes a photo of a m
 
 * TensorFlow v1.10
 * Xcode 10.1
-* Food101 Core ML
-* Inception v3 Core ML
+* Food101 Core ML model
+* Inception v3 Core ML model
 
 
 ## Author
