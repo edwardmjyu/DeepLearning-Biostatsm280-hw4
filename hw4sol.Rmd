@@ -355,13 +355,13 @@ Although not a 1 to 1 comparison, for the sake of presentation we now examine th
 
 We transform the original picture with Van Gogh's Starry night as the style:
 
-![](~/biostatm280-winter2019-hw4/albert_epoch_500.png)
+![](~/biostatm280-winter2019-hw4/Q1/albert_epoch_500.png)
 
 ### Epoch ###
 
 Comparisons can also be made on the output images based on the same base and style images, but with different epochs. Here we'll show a `GIF` that puts together a set of output images from 100, 200, 300, 400, and 500 epochs respectively. The gif starts with images generated from 100 epochs, whose base hue is darker in general and contents not as clear as the original pictures. As the epoch increases, images tend to have a base hue closer to the style image and the contents more substantial. 
 
-![](~/biostatm280-winter2019-hw4/output_FDmUpr.gif)
+![](~/biostatm280-winter2019-hw4/Q1/output_FDmUpr.gif)
 
 ### Style ###
 
